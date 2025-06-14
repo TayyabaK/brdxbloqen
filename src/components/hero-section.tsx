@@ -177,8 +177,8 @@ const Hero: React.FC = () => {
                       WebkitBackgroundClip: 'text',
                       backgroundClip: 'text',
                       color: 'transparent',
-                      fontWeight: 900,
-                      fontSize: '1.5rem', // Smaller animation text
+                      fontWeight: 700,
+                      fontSize: '0.8rem', // Smaller animation text
                     }}
                   />
                 </Typography>
@@ -206,7 +206,7 @@ const Hero: React.FC = () => {
                       py: 1, // Reduced padding
                       fontWeight: 700,
                       textTransform: 'none',
-                      fontSize: '0.875rem', // Smaller font
+                      fontSize: { xs: '0.5rem', md: '1rem' }, // Smaller font
                     }}>
                     Schedule Free Consultation
                   </Button>
