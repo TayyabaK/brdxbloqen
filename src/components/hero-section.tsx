@@ -177,8 +177,8 @@ const Hero: React.FC = () => {
                       WebkitBackgroundClip: 'text',
                       backgroundClip: 'text',
                       color: 'transparent',
-                      fontWeight: 700,
-                      fontSize: '0.875rem', // Smaller animation text
+                      fontWeight: 900,
+                      fontSize: '1.5rem', // Smaller animation text
                     }}
                   />
                 </Typography>
