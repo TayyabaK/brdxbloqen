@@ -81,7 +81,7 @@ const Hero: React.FC = () => {
             flexDirection: { xs: 'column', md: 'row' },
             gap: { xs: 2, md: 4 }, // Reduced gap
             alignItems: 'center',
-            height: { xs: 'auto', md: '60vh' },
+            height: { xs: 'auto', md: '80vh' },
           }}>
           {/* Left: Text Panel */}
           <Box
