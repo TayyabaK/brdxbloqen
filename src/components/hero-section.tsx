@@ -163,12 +163,17 @@ const Hero: React.FC = () => {
                   <Box
                     component='span'
                     sx={{
+                      fontWeight: 700,
+                      background: `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+                      WebkitBackgroundClip: 'text',
+                      backgroundClip: 'text',
+                      color: 'transparent',
+                      // responsive fontSize:
                       fontSize: {
-                        xs: '0.875rem',
-                        sm: '0.9rem',
-                        md: '1.25rem',
+                        xs: '0.9rem',
+                        sm: '1.1rem',
+                        md: '1.3rem',
                         lg: '1.5rem',
-                        xl: '1.75rem',
                       },
                     }}>
                     <TypeAnimation
