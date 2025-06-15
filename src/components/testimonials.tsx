@@ -306,18 +306,6 @@ export default function Testimonials() {
                           </Typography>
                         </Box>
                       </Box>
-
-                      <Box sx={{ position: 'absolute', right: 16, bottom: 16 }}>
-                        <Box
-                          component='img'
-                          src={t.companyLogo}
-                          alt='logo'
-                          sx={{
-                            height: isSm ? 24 : 32,
-                            maxWidth: isSm ? 100 : 150,
-                          }}
-                        />
-                      </Box>
                     </CardContent>
                   </Card>
                 </motion.div>
