@@ -21,7 +21,7 @@ const testimonials = [
     avatar: '/avatars/melinda.jpg',
     quote:
       'Culture is our North Star. Our people choose to come to work every day—and this helps us build a workplace worth choosing.',
-    color: '#fde7b9',
+    color: '#ffd8ea',
     companyLogo: '/logos/twiddy.png',
   },
   {
@@ -67,27 +67,44 @@ const testimonials = [
 ];
 
 // Styled Components
-const Section = styled(Box)(({ theme }) => ({
+const Section = styled(Box)(({}) => ({
   position: 'relative',
   backgroundImage: `url('/images/testimonial-bg.png')`,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
-  minHeight: '80vh',
+  minHeight: '80',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  padding: theme.spacing(8, 2),
 }));
 
 const StackBox = styled(Box)(({ theme }) => ({
   position: 'relative',
   width: '90vw',
-  maxWidth: 800,
-  height: '60vh',
-  maxHeight: 500,
-  [theme.breakpoints.down('sm')]: {
-    height: 300,
+  maxWidth: 1000,
+  height: '70vh',
+  maxHeight: 800,
+  overflow: 'hidden', // ✅ THIS LINE prevents overflow above the section
+  [theme.breakpoints.down('xl')]: {
+    maxWidth: 900,
+    maxHeight: 700,
   },
+  [theme.breakpoints.down('lg')]: {
+    maxWidth: 800,
+    maxHeight: 600,
+  },
+  [theme.breakpoints.down('md')]: {
+    maxWidth: 700,
+    maxHeight: 500,
+  },
+  [theme.breakpoints.down('sm')]: {
+    height: 600,
+    maxWidth: '95vw',
+  },
+  paddingTop: theme.spacing(8),
+  paddingBottom: theme.spacing(8),
+  paddingLeft: theme.spacing(2),
+  paddingRight: theme.spacing(2),
 }));
 
 const ArrowButton = styled(IconButton)(({ theme }) => ({
@@ -101,11 +118,15 @@ const ArrowButton = styled(IconButton)(({ theme }) => ({
 }));
 
 // Component
+// Updated Component
 export default function Testimonials() {
   const theme = useTheme();
   const isSm = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMd = useMediaQuery(theme.breakpoints.down('md'));
+  const isLg = useMediaQuery(theme.breakpoints.down('lg'));
   const [index, setIndex] = useState(0);
-  const controls = useAnimation();
+  const controlsFront = useAnimation(); // top card
+  const controlsNext = useAnimation(); // second card (bottom one becoming top)
 
   const n = testimonials.length;
   const visibleCards = [
@@ -114,18 +135,44 @@ export default function Testimonials() {
     testimonials[(index + 2) % n],
   ];
 
-  const handleChange = async (newIndex: number) => {
-    await controls.start({
-      rotateX: 15,
-      y: -10,
-      transition: { duration: 0.4 },
+  const handleChange = async (increment: number) => {
+    // Animate current top card lifting left
+    await controlsFront.start({
+      x: -200,
+      y: -250,
+      rotate: -10,
+      scale: 0.95,
+      transition: { duration: 1, ease: 'easeInOut' },
     });
-    controls.set({ rotateX: 0, y: 0 });
-    setIndex(newIndex);
+
+    // Animate next card upward and scaling slightly
+    await controlsNext.start({
+      y: -20,
+      scale: 1.02,
+      transition: { duration: 0.4, ease: 'easeOut' },
+    });
+
+    // Reset both for reuse
+    controlsFront.set({ x: 0, y: 0, rotate: 0, scale: 1 });
+    controlsNext.set({ y: 0, scale: 1 });
+
+    // Move to next card
+    setIndex((prevIndex) => (prevIndex + increment + n) % n);
   };
 
-  const next = () => handleChange((index + 1) % n);
-  const prev = () => handleChange((index - 1 + n) % n);
+  const next = () => handleChange(1);
+  const prev = () => handleChange(-1);
+
+  // Responsive font sizes (unchanged)
+  const quoteFontSize = isSm
+    ? '1.5rem'
+    : isMd
+    ? '1.75rem'
+    : isLg
+    ? '2rem'
+    : '2.5rem';
+  const nameFontSize = isSm ? '0.875rem' : isMd ? '1rem' : '1.125rem';
+  const titleFontSize = isSm ? '0.75rem' : isMd ? '0.875rem' : '1rem';
 
   return (
     <Section>
@@ -135,18 +182,13 @@ export default function Testimonials() {
         </ArrowButton>
 
         {visibleCards.map((t, i) => {
-          const pos = (i - index + n) % n;
-          const zIndex = n - pos;
+          const zIndex = 10 - i;
           const offsets = [
-            { x: 0, y: 0, angle: 2 },
-            { x: -10, y: 6, angle: -2 },
-            { x: 10, y: 12, angle: 1 },
-            { x: 0, y: 0, angle: 0 }, // Center card
-            { x: -10, y: -6, angle: -1 },
-            { x: 10, y: -12, angle: 2 },
-            { x: 0, y: 0, angle: 0 }, // Last card
+            { x: 0, y: 0, angle: 2 }, // Top card
+            { x: -10, y: 6, angle: -2 }, // Second card
+            { x: 10, y: 12, angle: 1 }, // Third card
           ];
-          const { x, y, angle } = offsets[pos];
+          const { x, y, angle } = offsets[i];
 
           return (
             <Box
@@ -161,79 +203,109 @@ export default function Testimonials() {
                 animate={{ x, y, rotate: angle }}
                 transition={{ type: 'spring', stiffness: 300, damping: 30 }}>
                 <motion.div
-                  animate={i === index ? controls : {}}
+                  animate={
+                    i === 0 ? controlsFront : i === 1 ? controlsNext : {}
+                  }
                   style={{
                     transformStyle: 'preserve-3d',
-                    perspective: 1000,
+                    perspective: 1200,
+                    transformOrigin: 'center',
+                    width: '100%',
+                    height: '100%',
                   }}>
                   <Card
                     sx={{
-                      width: '100%',
-                      height: '100%',
-                      minHeight: { xs: 300, md: 400 },
+                      width: {
+                        xs: 320,
+                        sm: 400,
+                        md: 500,
+                        lg: 600,
+                        xl: 700,
+                      },
+                      height: {
+                        xs: 184,
+                        sm: 230,
+                        md: 287,
+                        lg: 345,
+                        xl: 403,
+                      },
                       background: t.color,
                       overflow: 'hidden',
                       boxShadow: theme.shadows[4],
                       position: 'relative',
                       borderRadius: 2,
                       border: `20px solid white`,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      mx: 'auto', // center horizontally
                     }}>
                     <CardContent
                       sx={{
                         height: '100%',
-                        padding: theme.spacing(6, 4),
+                        width: '100%',
+                        padding: isSm ? 3 : 4,
                         display: 'flex',
                         flexDirection: 'column',
-                        justifyContent: 'space-between',
+                        justifyContent: 'center',
                       }}>
                       <Typography
                         sx={{
-                          fontSize: { xs: '1.5rem', md: '2rem', lg: '2.5rem' },
+                          fontSize: quoteFontSize,
                           lineHeight: 1.4,
+                          textAlign: 'center',
+                          mb: 4,
+                          px: isSm ? 1 : 4,
                         }}>
                         “{t.quote}”
                       </Typography>
 
                       <Box
-                        sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          mt: 4,
+                        }}>
                         <Avatar
                           src={t.avatar}
-                          sx={{ width: 48, height: 48, mr: 2 }}
+                          sx={{
+                            width: isSm ? 48 : 64,
+                            height: isSm ? 48 : 64,
+                            mr: 2,
+                          }}
                         />
                         <Box>
                           <Typography
                             fontWeight={700}
-                            sx={{ fontSize: { xs: '0.875rem', md: '1rem' } }}>
+                            sx={{ fontSize: nameFontSize }}>
                             {t.name}
                           </Typography>
                           <Typography
                             variant='body2'
                             color='text.secondary'
-                            sx={{
-                              fontSize: { xs: '0.75rem', md: '0.875rem' },
-                            }}>
+                            sx={{ fontSize: titleFontSize }}>
                             {t.title}
                           </Typography>
                         </Box>
                       </Box>
 
-                      <Typography
-                        variant='subtitle2'
+                      <Box
                         sx={{
                           position: 'absolute',
                           right: 16,
                           bottom: 16,
-                          fontWeight: 700,
-                          fontSize: { xs: '0.875rem', md: '1rem' },
-                          color: theme.palette.text.primary,
                         }}>
                         <Box
                           component='img'
                           src={t.companyLogo}
                           alt='logo'
-                          sx={{ height: { xs: 24, md: 32 } }}
+                          sx={{
+                            height: isSm ? 24 : 32,
+                            maxWidth: isSm ? 100 : 150,
+                          }}
                         />
-                      </Typography>
+                      </Box>
                     </CardContent>
                   </Card>
                 </motion.div>
