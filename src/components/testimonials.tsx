@@ -195,14 +195,14 @@ export default function Testimonials() {
     setIndex(nextIndex);
   };
   const quoteFontSize = isSm
-    ? '0.5rem'
+    ? '1rem'
     : isMd
     ? '1.25rem'
     : isLg
     ? '1.5rem'
     : '2rem';
   const nameFontSize = isSm ? '0.875rem' : isMd ? '1rem' : '1.125rem';
-  const titleFontSize = isSm ? '0.75rem' : isMd ? '0.875rem' : '1rem';
+  const titleFontSize = isSm ? '0.525rem' : isMd ? '0.875rem' : '1rem';
 
   return (
     <Section>
