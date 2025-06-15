@@ -207,7 +207,7 @@ export default function Testimonials() {
   return (
     <Section>
       <StackBox>
-        <ArrowButton onClick={prev} sx={{ left: isSm ? 8 : 16 }}>
+        <ArrowButton onClick={prev} sx={{ left: isSm ? 8 : 16, zIndex: 11 }}>
           <ChevronLeftIcon />
         </ArrowButton>
 
