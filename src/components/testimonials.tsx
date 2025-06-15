@@ -83,6 +83,9 @@ const Section = styled(Box)(({ theme }) => ({
   justifyContent: 'center',
   padding: theme.spacing(8, 0), // Equal top and bottom padding
   overflow: 'hidden',
+  [theme.breakpoints.down('md')]: {
+    minHeight: '100vh',
+  },
 }));
 
 const StackBox = styled(Box)(({ theme }) => ({
@@ -192,7 +195,7 @@ export default function Testimonials() {
     setIndex(nextIndex);
   };
   const quoteFontSize = isSm
-    ? '1rem'
+    ? '0.8rem'
     : isMd
     ? '1.25rem'
     : isLg
@@ -274,7 +277,7 @@ export default function Testimonials() {
                           mb: 4,
                           px: isSm ? 1 : 4,
                         }}>
-                        “{t.quote}”
+                        {t.quote}
                       </Typography>
 
                       <Box
@@ -282,7 +285,7 @@ export default function Testimonials() {
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
-                          mt: 4,
+                          mt: 1,
                         }}>
                         <Avatar
                           src={t.avatar}

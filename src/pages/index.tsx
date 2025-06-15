@@ -10,6 +10,7 @@ export default function Home() {
       <Hero />
       <Box sx={{ my: 4 }} />
       <Testimonials />
+      <Box sx={{ my: 4 }} />
     </Layout>
   );
 }
