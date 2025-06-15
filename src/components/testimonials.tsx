@@ -195,7 +195,7 @@ export default function Testimonials() {
     setIndex(nextIndex);
   };
   const quoteFontSize = isSm
-    ? '0.8rem'
+    ? '0.5rem'
     : isMd
     ? '1.25rem'
     : isLg
