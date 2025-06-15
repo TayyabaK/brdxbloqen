@@ -10,7 +10,7 @@ export default function Home() {
     <Layout>
       <Container maxWidth={false}>
         <Hero />
-        <Box sx={{ my: 8 }} />
+        <Box sx={{ my: 4 }} />
         <Testimonials />
       </Container>
     </Layout>

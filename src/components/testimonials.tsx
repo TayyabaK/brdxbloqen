@@ -188,12 +188,12 @@ export default function Testimonials() {
     xl: 403,
   };
   const quoteFontSize = isSm
-    ? '1.5rem'
+    ? '1rem'
     : isMd
-    ? '1.75rem'
+    ? '1.25rem'
     : isLg
-    ? '2rem'
-    : '2.5rem';
+    ? '1.5rem'
+    : '2rem';
   const nameFontSize = isSm ? '0.875rem' : isMd ? '1rem' : '1.125rem';
   const titleFontSize = isSm ? '0.75rem' : isMd ? '0.875rem' : '1rem';
 
