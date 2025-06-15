@@ -12,9 +12,8 @@ import {
 import { motion, useAnimation } from 'framer-motion';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import { theme } from '@/theme/theme';
 
-// Testimonial data
+// Testimonial data (unchanged)
 const testimonials = [
   {
     name: 'Melinda Maher',
@@ -68,16 +67,16 @@ const testimonials = [
 ];
 
 // Styled Components
-const Section = styled(Box)(({}) => ({
+const Section = styled(Box)(({ theme }) => ({
   position: 'relative',
   backgroundImage: `url('/images/testimonial-bg.png')`,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
-  minHeight: '80',
+  minHeight: '70vh',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  padding: theme.spacing(4),
+  padding: theme.spacing(8, 0), // Equal top and bottom padding
 }));
 
 const StackBox = styled(Box)(({ theme }) => ({
@@ -85,8 +84,9 @@ const StackBox = styled(Box)(({ theme }) => ({
   width: '90vw',
   maxWidth: 1000,
   height: '70vh',
+  minHeight: 500, // Ensure minimum height
   maxHeight: 800,
-  overflow: 'hidden', // ✅ THIS LINE prevents overflow above the section
+  margin: '0 auto', // Center the stack box
   [theme.breakpoints.down('xl')]: {
     maxWidth: 900,
     maxHeight: 700,
@@ -98,15 +98,14 @@ const StackBox = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     maxWidth: 700,
     maxHeight: 500,
+    height: 'auto',
+    minHeight: 400,
   },
   [theme.breakpoints.down('sm')]: {
-    height: 600,
-    maxWidth: '95vw',
+    width: '95vw',
+    height: 'auto',
+    minHeight: 300,
   },
-  paddingTop: theme.spacing(8),
-  paddingBottom: theme.spacing(8),
-  paddingLeft: theme.spacing(2),
-  paddingRight: theme.spacing(2),
 }));
 
 const ArrowButton = styled(IconButton)(({ theme }) => ({
@@ -120,15 +119,14 @@ const ArrowButton = styled(IconButton)(({ theme }) => ({
 }));
 
 // Component
-// Updated Component
 export default function Testimonials() {
   const theme = useTheme();
   const isSm = useMediaQuery(theme.breakpoints.down('sm'));
   const isMd = useMediaQuery(theme.breakpoints.down('md'));
   const isLg = useMediaQuery(theme.breakpoints.down('lg'));
   const [index, setIndex] = useState(0);
-  const controlsFront = useAnimation(); // top card
-  const controlsNext = useAnimation(); // second card (bottom one becoming top)
+  const controlsFront = useAnimation();
+  const controlsNext = useAnimation();
 
   const n = testimonials.length;
   const visibleCards = [
@@ -142,30 +140,53 @@ export default function Testimonials() {
     await Promise.all([
       controlsFront.start({
         x: -250,
-        y: -300,
-        rotate: -10,
-        scale: 0.95,
-        transition: { duration: 1, ease: 'easeInOut' },
+        y: -150,
+        rotate: -15,
+        opacity: 0,
+        transition: { duration: 0.5, ease: 'easeInOut' },
       }),
       controlsNext.start({
-        y: -20,
+        y: -30,
         scale: 1.02,
-        transition: { duration: 1, ease: 'easeInOut' }, // match duration for smooth sync
+        transition: { duration: 0.5, ease: 'easeOut' },
       }),
     ]);
 
-    // Reset both for reuse
-    controlsFront.set({ x: 0, y: 0, rotate: 0, scale: 1 });
-    controlsNext.set({ y: 0, scale: 1 });
+    // Reset animations and update index
+    controlsFront.start({
+      x: 0,
+      y: 0,
+      rotate: 0,
+      opacity: 1,
+      transition: { duration: 0 },
+    });
+    controlsNext.start({
+      y: 0,
+      scale: 1,
+      transition: { duration: 0 },
+    });
 
-    // Move to next card
     setIndex((prevIndex) => (prevIndex + increment + n) % n);
   };
 
   const next = () => handleChange(1);
   const prev = () => handleChange(-1);
 
-  // Responsive font sizes (unchanged)
+  // Responsive values
+  const cardWidth = {
+    xs: 320,
+    sm: 400,
+    md: 500,
+    lg: 600,
+    xl: 700,
+  };
+  const cardHeight = {
+    xs: 184,
+    sm: 230,
+    md: 287,
+    lg: 345,
+    xl: 403,
+  };
   const quoteFontSize = isSm
     ? '1.5rem'
     : isMd
@@ -199,9 +220,10 @@ export default function Testimonials() {
                 position: 'absolute',
                 width: '100%',
                 height: '100%',
-                zIndex,
+                display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                zIndex,
               }}>
               <motion.div
                 animate={{ x, y, rotate: angle }}
@@ -214,35 +236,20 @@ export default function Testimonials() {
                     transformStyle: 'preserve-3d',
                     perspective: 1200,
                     transformOrigin: 'center',
-                    width: '100%',
-                    height: '100%',
                   }}>
                   <Card
                     sx={{
-                      width: {
-                        xs: 320,
-                        sm: 400,
-                        md: 500,
-                        lg: 600,
-                        xl: 700,
-                      },
-                      height: {
-                        xs: 184,
-                        sm: 230,
-                        md: 287,
-                        lg: 345,
-                        xl: 403,
-                      },
+                      width: cardWidth,
+                      height: cardHeight,
                       background: t.color,
                       overflow: 'hidden',
                       boxShadow: theme.shadows[4],
-                      position: 'relative',
                       borderRadius: 2,
                       border: `20px solid white`,
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      mx: 'auto', // center horizontally
+                      minHeight: cardHeight.xl, // Ensure minimum height for smaller screens
                     }}>
                     <CardContent
                       sx={{
@@ -252,6 +259,7 @@ export default function Testimonials() {
                         display: 'flex',
                         flexDirection: 'column',
                         justifyContent: 'center',
+                        position: 'relative',
                       }}>
                       <Typography
                         sx={{
@@ -294,12 +302,7 @@ export default function Testimonials() {
                         </Box>
                       </Box>
 
-                      <Box
-                        sx={{
-                          position: 'absolute',
-                          right: 16,
-                          bottom: 16,
-                        }}>
+                      <Box sx={{ position: 'absolute', right: 16, bottom: 16 }}>
                         <Box
                           component='img'
                           src={t.companyLogo}
