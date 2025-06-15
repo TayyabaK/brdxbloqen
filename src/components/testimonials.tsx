@@ -140,8 +140,8 @@ export default function Testimonials() {
     // Animate both cards simultaneously
     await Promise.all([
       controlsFront.start({
-        x: -250,
-        y: -150,
+        x: -300,
+        y: -250,
         rotate: -15,
         scale: 0.95,
         transition: { duration: 0.5, ease: 'easeInOut' },
