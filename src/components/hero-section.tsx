@@ -200,20 +200,6 @@ const Hero: React.FC = () => {
                         backgroundClip: 'text',
                         color: 'transparent',
                         fontWeight: 700,
-                        fontSize:
-                          theme.breakpoints.values.xl &&
-                          window.innerWidth >= theme.breakpoints.values.xl
-                            ? '1.75rem'
-                            : theme.breakpoints.values.lg &&
-                              window.innerWidth >= theme.breakpoints.values.lg
-                            ? '1.5rem'
-                            : theme.breakpoints.values.md &&
-                              window.innerWidth >= theme.breakpoints.values.md
-                            ? '1.25rem'
-                            : theme.breakpoints.values.sm &&
-                              window.innerWidth >= theme.breakpoints.values.sm
-                            ? '0.9rem'
-                            : '0.875rem',
                       }}
                     />
                   </Box>
