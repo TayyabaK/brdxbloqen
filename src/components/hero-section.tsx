@@ -100,7 +100,7 @@ const Hero: React.FC = () => {
                   {' '}
                   {/* Reduced margin */}
                   <Chip
-                    label='BLOQEN × BRDIGITECH'
+                    label='BRDIGITECH × BLOQEN'
                     color='primary'
                     sx={{
                       borderRadius: 8,
@@ -146,43 +146,72 @@ const Hero: React.FC = () => {
                   sx={{
                     mb: 3, // Reduced margin
                     lineHeight: 1.6,
-                    fontSize: { xs: '0.875rem', md: '1rem' }, // Smaller font
+                    fontSize: {
+                      xs: '0.875rem',
+                      sm: '0.9rem',
+                      md: '1.25rem',
+                      lg: '1.5rem',
+                      xl: '1.75rem',
+                    }, // Smaller font
                     color: theme.palette.text.secondary,
                   }}>
-                  Full-stack Web3 solutions by Bloqen + BR Digitech —{' '}
+                  Full-stack Web3 solutions by BRDigitech + Bloqen —{' '}
                   <Box component='span' sx={{ fontWeight: 600 }}>
                     we specialize in
                   </Box>
                   <br />
-                  <TypeAnimation
-                    sequence={[
-                      'STRATEGY',
-                      1500,
-                      'SMART CONTRACTS',
-                      1500,
-                      'AUTOMATION BOTS',
-                      1500,
-                      'TOKEN PRESALES',
-                      1500,
-                      'NFT LAUNCHPAD',
-                      2500,
-                      'NFT LAUNCHPAD MARKETPLACE',
-                      2500,
-                      'WEB3 DAPPS',
-                      1500,
-                    ]}
-                    wrapper='span'
-                    cursor={true}
-                    repeat={Infinity}
-                    style={{
-                      background: `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
-                      WebkitBackgroundClip: 'text',
-                      backgroundClip: 'text',
-                      color: 'transparent',
-                      fontWeight: 700,
-                      fontSize: '0.5rem', // Smaller animation text
-                    }}
-                  />
+                  <Box
+                    component='span'
+                    sx={{
+                      fontSize: {
+                        xs: '0.875rem',
+                        sm: '0.9rem',
+                        md: '1.25rem',
+                        lg: '1.5rem',
+                        xl: '1.75rem',
+                      },
+                    }}>
+                    <TypeAnimation
+                      sequence={[
+                        'STRATEGY',
+                        1500,
+                        'SMART CONTRACTS',
+                        1500,
+                        'AUTOMATION BOTS',
+                        1500,
+                        'TOKEN PRESALES',
+                        1500,
+                        'NFT LAUNCHPAD AND MARKETPLACE',
+                        2500,
+                        'WEB3 DAPPS',
+                        1500,
+                      ]}
+                      wrapper='span'
+                      cursor={true}
+                      repeat={Infinity}
+                      style={{
+                        background: `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+                        WebkitBackgroundClip: 'text',
+                        backgroundClip: 'text',
+                        color: 'transparent',
+                        fontWeight: 700,
+                        fontSize:
+                          theme.breakpoints.values.xl &&
+                          window.innerWidth >= theme.breakpoints.values.xl
+                            ? '1.75rem'
+                            : theme.breakpoints.values.lg &&
+                              window.innerWidth >= theme.breakpoints.values.lg
+                            ? '1.5rem'
+                            : theme.breakpoints.values.md &&
+                              window.innerWidth >= theme.breakpoints.values.md
+                            ? '1.25rem'
+                            : theme.breakpoints.values.sm &&
+                              window.innerWidth >= theme.breakpoints.values.sm
+                            ? '0.9rem'
+                            : '0.875rem',
+                      }}
+                    />
+                  </Box>
                 </Typography>
 
                 <Box sx={{ display: 'flex', gap: 2 }}>
@@ -208,7 +237,13 @@ const Hero: React.FC = () => {
                       py: 1, // Reduced padding
                       fontWeight: 700,
                       textTransform: 'none',
-                      fontSize: { xs: '0.6rem', md: '1rem' }, // Smaller font
+                      fontSize: {
+                        xs: '0.875rem',
+                        sm: '0.9rem',
+                        md: '1.25rem',
+                        lg: '1.5rem',
+                        xl: '1.75rem',
+                      }, // Smaller font
                     }}>
                     Schedule Free Consultation
                   </Button>
