@@ -77,6 +77,7 @@ const Section = styled(Box)(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'center',
   padding: theme.spacing(8, 0), // Equal top and bottom padding
+  overflow: 'hidden',
 }));
 
 const StackBox = styled(Box)(({ theme }) => ({
