@@ -12,6 +12,7 @@ import {
 import { motion, useAnimation } from 'framer-motion';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import { theme } from '@/theme/theme';
 
 // Testimonial data
 const testimonials = [
@@ -76,6 +77,7 @@ const Section = styled(Box)(({}) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  padding: theme.spacing(4),
 }));
 
 const StackBox = styled(Box)(({ theme }) => ({
@@ -136,21 +138,21 @@ export default function Testimonials() {
   ];
 
   const handleChange = async (increment: number) => {
-    // Animate current top card lifting left
-    await controlsFront.start({
-      x: -200,
-      y: -250,
-      rotate: -10,
-      scale: 0.95,
-      transition: { duration: 1, ease: 'easeInOut' },
-    });
-
-    // Animate next card upward and scaling slightly
-    await controlsNext.start({
-      y: -20,
-      scale: 1.02,
-      transition: { duration: 0.4, ease: 'easeOut' },
-    });
+    // Animate both cards simultaneously
+    await Promise.all([
+      controlsFront.start({
+        x: -250,
+        y: -300,
+        rotate: -10,
+        scale: 0.95,
+        transition: { duration: 1, ease: 'easeInOut' },
+      }),
+      controlsNext.start({
+        y: -20,
+        scale: 1.02,
+        transition: { duration: 1, ease: 'easeInOut' }, // match duration for smooth sync
+      }),
+    ]);
 
     // Reset both for reuse
     controlsFront.set({ x: 0, y: 0, rotate: 0, scale: 1 });
@@ -198,6 +200,8 @@ export default function Testimonials() {
                 width: '100%',
                 height: '100%',
                 zIndex,
+                alignItems: 'center',
+                justifyContent: 'center',
               }}>
               <motion.div
                 animate={{ x, y, rotate: angle }}
