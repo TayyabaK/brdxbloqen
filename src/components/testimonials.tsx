@@ -142,13 +142,13 @@ export default function Testimonials() {
         x: -250,
         y: -150,
         rotate: -15,
-        opacity: 0,
+        scale: 0.95,
         transition: { duration: 0.5, ease: 'easeInOut' },
       }),
       controlsNext.start({
         y: -30,
         scale: 1.02,
-        transition: { duration: 0.5, ease: 'easeOut' },
+        transition: { duration: 0.5, ease: 'easeInOut' },
       }),
     ]);
 
@@ -157,9 +157,10 @@ export default function Testimonials() {
       x: 0,
       y: 0,
       rotate: 0,
-      opacity: 1,
+      scale: 1,
       transition: { duration: 0 },
     });
+
     controlsNext.start({
       y: 0,
       scale: 1,
