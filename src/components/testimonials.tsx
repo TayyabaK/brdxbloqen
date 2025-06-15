@@ -1,4 +1,3 @@
-// components/Testimonials.tsx
 import React, { useState } from 'react';
 import { styled, useTheme, alpha } from '@mui/material/styles';
 import {
@@ -14,61 +13,60 @@ import { motion, useAnimation } from 'framer-motion';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
-// base data
-const baseTestimonials = [
+// Testimonial data
+const testimonials = [
   {
-    name: 'Alice Johnson',
-    title: 'CEO',
-    avatar: '/avatars/alice.jpg',
+    name: 'Melinda Maher',
+    title: 'Head of Talent Development',
+    avatar: '/avatars/melinda.jpg',
     quote:
-      'Bloqen + BRDigitech transformed our Web3 roadmap. Their strategic vision and flawless execution took us from concept to live in under 8 weeks.',
-    color: '#e1ddfe',
-    company: 'Wonderland Co.',
+      'Culture is our North Star. Our people choose to come to work every day—and this helps us build a workplace worth choosing.',
+    color: '#fde7b9',
+    companyLogo: '/logos/twiddy.png',
   },
   {
-    name: 'Bob Smith',
-    title: 'Founder',
-    avatar: '/avatars/bob.jpg',
-    quote:
-      'I was amazed at how quickly they deployed our NFT marketplace—every detail polished, every edge case handled. Truly pros.',
+    name: 'Second Person',
+    title: 'Title',
+    avatar: '/avatars/placeholder2.jpg',
+    quote: 'Second testimonial quote here.',
+    color: '#e7d9fd',
+    companyLogo: '/logos/company2.png',
+  },
+  {
+    name: 'Third Person',
+    title: 'Title',
+    avatar: '/avatars/placeholder3.jpg',
+    quote: 'Third testimonial quote here.',
     color: '#ffbda7',
-    company: 'CryptoKit',
+    companyLogo: '/logos/company3.png',
   },
   {
-    name: 'Carol Lee',
-    title: 'CTO',
-    avatar: '/avatars/carol.jpg',
-    quote:
-      'Their “strategy → smart contracts → presales” flow is bulletproof. We hit our funding targets in record time.',
+    name: 'Fourth Person',
+    title: 'Title',
+    avatar: '/avatars/placeholder4.jpg',
+    quote: 'Fourth testimonial quote here.',
     color: '#eaffb2',
-    company: 'DeFiHub',
+    companyLogo: '/logos/company4.png',
   },
   {
-    name: 'David Kim',
-    title: 'Product Lead',
-    avatar: '/avatars/david.jpg',
-    quote:
-      'BRDigitech’s expertise in Web3 is unmatched. They guided us through every step, from ideation to launch.',
-    color: '#b2eaff',
-    company: 'MetaVerse',
+    name: 'Fifth Person',
+    title: 'Title',
+    avatar: '/avatars/placeholder5.jpg',
+    quote: 'Fifth testimonial quote here.',
+    color: '#d9e9fd',
+    companyLogo: '/logos/company5.png',
   },
   {
-    name: 'Eva Green',
-    title: 'Marketing Director',
-    avatar: '/avatars/eva.jpg',
-    quote:
-      'Their marketing strategies are razor-sharp. We saw a 300% increase in community engagement pre-launch.',
-    color: '#ffd8ea',
-    company: 'ChainLink',
+    name: 'Sixth Person',
+    title: 'Title',
+    avatar: '/avatars/placeholder6.jpg',
+    quote: 'Sixth testimonial quote here.',
+    color: '#f9f0d9',
+    companyLogo: '/logos/company6.png',
   },
 ];
 
-// attach a random angle in [-30,30] once for each testimonial
-const testimonials = baseTestimonials.map((t) => ({
-  ...t,
-  angle: Math.random() * 15,
-}));
-
+// Styled Components
 const Section = styled(Box)(({ theme }) => ({
   position: 'relative',
   backgroundImage: `url('/images/testimonial-bg.png')`,
@@ -84,11 +82,10 @@ const Section = styled(Box)(({ theme }) => ({
 const StackBox = styled(Box)(({ theme }) => ({
   position: 'relative',
   width: '90vw',
-  maxWidth: 700,
-  height: '70vw',
+  maxWidth: 800,
+  height: '60vh',
   maxHeight: 500,
   [theme.breakpoints.down('sm')]: {
-    width: '95vw',
     height: 300,
   },
 }));
@@ -100,51 +97,56 @@ const ArrowButton = styled(IconButton)(({ theme }) => ({
   background: theme.palette.background.paper,
   boxShadow: theme.shadows[4],
   zIndex: 10,
-  '&:hover': {
-    background: alpha(theme.palette.primary.main, 0.1),
-    transform: 'translateY(-50%) scale(1.1)',
-  },
+  '&:hover': { background: alpha(theme.palette.primary.main, 0.1) },
 }));
 
+// Component
 export default function Testimonials() {
   const theme = useTheme();
   const isSm = useMediaQuery(theme.breakpoints.down('sm'));
   const [index, setIndex] = useState(0);
   const controls = useAnimation();
-  const n = testimonials.length;
 
-  const handleChange = async (newIndex: number, dir: number) => {
-    // lift only the active card
+  const n = testimonials.length;
+  const visibleCards = [
+    testimonials[index % n],
+    testimonials[(index + 1) % n],
+    testimonials[(index + 2) % n],
+  ];
+
+  const handleChange = async (newIndex: number) => {
     await controls.start({
-      y: -40,
-      rotate: dir * 10,
-      scale: 1.05,
-      opacity: 0.8,
-      transition: { duration: 0.3 },
+      rotateX: 15,
+      y: -10,
+      transition: { duration: 0.4 },
     });
-    // reset and reorder
-    controls.set({ y: 0, rotate: 0, scale: 1, opacity: 1 });
+    controls.set({ rotateX: 0, y: 0 });
     setIndex(newIndex);
   };
 
-  const next = () => handleChange((index + 1) % n, 1);
-  const prev = () => handleChange((index - 1 + n) % n, -1);
+  const next = () => handleChange((index + 1) % n);
+  const prev = () => handleChange((index - 1 + n) % n);
 
   return (
-    //make size match the screen size
-    <Section sx={{ backgroundColor: theme.palette.primary.light }}>
+    <Section>
       <StackBox>
-        {/* Prev arrow */}
         <ArrowButton onClick={prev} sx={{ left: isSm ? 8 : 16 }}>
           <ChevronLeftIcon />
         </ArrowButton>
 
-        {/* Stacked cards */}
-        {testimonials.map((t, i) => {
+        {visibleCards.map((t, i) => {
           const pos = (i - index + n) % n;
           const zIndex = n - pos;
-          const offsetX = (pos - 2) * 20;
-          const offsetY = pos * 6;
+          const offsets = [
+            { x: 0, y: 0, angle: 2 },
+            { x: -10, y: 6, angle: -2 },
+            { x: 10, y: 12, angle: 1 },
+            { x: 0, y: 0, angle: 0 }, // Center card
+            { x: -10, y: -6, angle: -1 },
+            { x: 10, y: -12, angle: 2 },
+            { x: 0, y: 0, angle: 0 }, // Last card
+          ];
+          const { x, y, angle } = offsets[pos];
 
           return (
             <Box
@@ -155,49 +157,66 @@ export default function Testimonials() {
                 height: '100%',
                 zIndex,
               }}>
-              {/* base positioning + tilt */}
               <motion.div
-                animate={{
-                  x: offsetX,
-                  y: offsetY,
-                  rotate: t.angle,
-                  scale: i === index ? 1 : 0.9,
-                }}
+                animate={{ x, y, rotate: angle }}
                 transition={{ type: 'spring', stiffness: 300, damping: 30 }}>
-                {/* lift animation only on active */}
-                <motion.div animate={i === index ? controls : {}}>
+                <motion.div
+                  animate={i === index ? controls : {}}
+                  style={{
+                    transformStyle: 'preserve-3d',
+                    perspective: 1000,
+                  }}>
                   <Card
                     sx={{
                       width: '100%',
                       height: '100%',
-                      minHeight: { xs: '300px', md: '400px' },
+                      minHeight: { xs: 300, md: 400 },
                       background: t.color,
                       overflow: 'hidden',
                       boxShadow: theme.shadows[4],
                       position: 'relative',
                       borderRadius: 2,
                       border: `20px solid white`,
-                      fontWeight: 500,
-                      fontSize: {
-                        xs: '1.125rem',
-                        md: '1.25rem',
-                        lg: '1.5rem',
-                        xl: '1.75rem',
-                      },
                     }}>
-                    <CardContent sx={{ height: '100%', position: 'relative' }}>
-                      <Typography>“{t.quote}”</Typography>
+                    <CardContent
+                      sx={{
+                        height: '100%',
+                        padding: theme.spacing(6, 4),
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'space-between',
+                      }}>
+                      <Typography
+                        sx={{
+                          fontSize: { xs: '1.5rem', md: '2rem', lg: '2.5rem' },
+                          lineHeight: 1.4,
+                        }}>
+                        “{t.quote}”
+                      </Typography>
+
                       <Box
                         sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
-                        <Avatar src={t.avatar} sx={{ mr: 2 }} />
+                        <Avatar
+                          src={t.avatar}
+                          sx={{ width: 48, height: 48, mr: 2 }}
+                        />
                         <Box>
-                          <Typography fontWeight={700}>{t.name}</Typography>
-                          <Typography variant='body2' color='text.secondary'>
+                          <Typography
+                            fontWeight={700}
+                            sx={{ fontSize: { xs: '0.875rem', md: '1rem' } }}>
+                            {t.name}
+                          </Typography>
+                          <Typography
+                            variant='body2'
+                            color='text.secondary'
+                            sx={{
+                              fontSize: { xs: '0.75rem', md: '0.875rem' },
+                            }}>
                             {t.title}
                           </Typography>
                         </Box>
                       </Box>
-                      {/* company name bottom-right */}
+
                       <Typography
                         variant='subtitle2'
                         sx={{
@@ -205,9 +224,15 @@ export default function Testimonials() {
                           right: 16,
                           bottom: 16,
                           fontWeight: 700,
+                          fontSize: { xs: '0.875rem', md: '1rem' },
                           color: theme.palette.text.primary,
                         }}>
-                        {t.company}
+                        <Box
+                          component='img'
+                          src={t.companyLogo}
+                          alt='logo'
+                          sx={{ height: { xs: 24, md: 32 } }}
+                        />
                       </Typography>
                     </CardContent>
                   </Card>
@@ -217,7 +242,6 @@ export default function Testimonials() {
           );
         })}
 
-        {/* Next arrow */}
         <ArrowButton onClick={next} sx={{ right: isSm ? 8 : 16 }}>
           <ChevronRightIcon />
         </ArrowButton>
