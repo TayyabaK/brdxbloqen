@@ -138,7 +138,7 @@ export default function StatsCarousel() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCenterIndex((prev) => (prev + 1) % stats.length);
-    }, 3000);
+    }, 2000);
     return () => clearInterval(interval);
   }, []);
 

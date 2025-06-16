@@ -8,6 +8,8 @@ import { useRef } from 'react';
 import StatsCarousel from '@/components/at-a-glance';
 import Web3Solutions from '@/components/web3-solutions';
 import SixStepProcess from '@/components/six-step-process';
+import PartnershipSection from '@/components/partnership';
+import FinalCTA from '@/components/final-cta/final-cta';
 
 export default function Home() {
   const testimonialRef = useRef(null);
@@ -16,17 +18,14 @@ export default function Home() {
     <Layout>
       <Hero />
       <Box sx={{ my: 4 }} />
-
-      <StatsCarousel />
-      <Box sx={{ my: 4 }} />
-
       <Web3Solutions />
       <Box sx={{ my: 4 }} />
-
-      <SixStepProcess />
-
+      <StatsCarousel />
       <Box sx={{ my: 4 }} />
-
+      <PartnershipSection />
+      <Box sx={{ my: 4 }} />
+      <SixStepProcess />
+      <Box sx={{ my: 4 }} />
       <motion.div
         ref={testimonialRef}
         initial={{ opacity: 0, y: 50 }}
@@ -35,7 +34,8 @@ export default function Home() {
         transition={{ duration: 0.6, ease: 'easeOut' }}>
         <Testimonials />
       </motion.div>
-
+      <Box sx={{ my: 4 }} />
+      <FinalCTA />
       <Box sx={{ my: 4 }} />
     </Layout>
   );
