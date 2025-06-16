@@ -36,7 +36,7 @@ const colors = [
 
 const generateHorizontalEllipsePositions = (
   radiusX = 650,
-  radiusY = 350,
+  radiusY = 400,
   total = stats.length
 ) => {
   const positions = [];
