@@ -175,7 +175,7 @@ const ReadyMadeProducts = () => {
           elevation={4}
           sx={{
             width: isMobile ? '100%' : 360,
-            borderRadius: 6,
+            borderRadius: 2,
             overflow: 'hidden',
             flexShrink: 0,
             background: `linear-gradient(135deg, rgba(255,255,255,0.8), rgba(245,245,255,0.6))`,
@@ -257,7 +257,7 @@ const ReadyMadeProducts = () => {
                 elevation={4}
                 sx={{
                   height: '100%',
-                  borderRadius: 6,
+                  borderRadius: 2,
                   overflow: 'hidden',
                   position: 'relative',
                   background:
