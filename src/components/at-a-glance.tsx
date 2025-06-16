@@ -222,7 +222,7 @@ export default function StatsCarousel() {
         minHeight: '100vh',
         position: 'relative',
         overflow: 'hidden',
-        backgroundColor: '#f2dfb4',
+        backgroundColor: '#f9f0d9',
         py: 15,
       }}>
       <Box
