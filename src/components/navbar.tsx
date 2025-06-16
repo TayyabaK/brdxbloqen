@@ -21,20 +21,7 @@ const Navbar = () => {
           left: 0,
           right: 0,
           height: 4,
-          background: `linear-gradient(
-            to right, 
-            #ff0000 0%, 
-            #ff9900 10%, 
-            #d0de21 20%, 
-            #4fdc4a 30%, 
-            #3fdad8 40%, 
-            #2fc9e2 50%, 
-            #1c7fee 60%, 
-            #5f15f2 70%, 
-            #ba0cf8 80%, 
-            #fb07d9 90%, 
-            #ff0000 100%
-          )`,
+
           zIndex: 1,
         },
         // Bottom rainbow gradient
