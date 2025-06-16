@@ -10,6 +10,7 @@ import {
   Stack,
 } from '@mui/material';
 import { motion } from 'framer-motion';
+import {theme} from '@/theme/theme'
 
 const partners = [
   {
@@ -17,17 +18,18 @@ const partners = [
     description:
       'Bahrain-based dev agency, 8+ years experience, 51+ team size, 50+ successful Web3 apps.',
     icon: '/images/brd-logo.png',
+    color: theme.palette.primary.main
   },
   {
     name: 'Bloqen',
     description:
       'Founder-facing strategy, onboarding, and long-term vision — aligning Web3 products with business goals and growth potential.',
     icon: '/images/bloqen.png',
+    color: 'black'
   },
 ];
 
 const PartnershipSection = () => {
-  const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
@@ -210,7 +212,7 @@ const PartnershipSection = () => {
                     sm: '1.75rem',
                     md: '2rem',
                   },
-                  background: 'linear-gradient(to right, #4d61ff, #20c997)',
+                  background: partner.color,
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   mb: 2,
