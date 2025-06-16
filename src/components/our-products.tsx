@@ -14,6 +14,7 @@ import {
 } from '@mui/material';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
+import {theme} from '@/theme/theme'
 
 const products = [
   {
@@ -110,7 +111,6 @@ const products = [
 ];
 
 const ReadyMadeProducts = () => {
-  const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [selected, setSelected] = useState(0);
   const [carouselIndex, setCarouselIndex] = useState(0);
@@ -210,17 +210,17 @@ const ReadyMadeProducts = () => {
                     px: 3,
                     borderLeft:
                       selected === index
-                        ? `4px solid ${theme.palette.primary.main}`
+                        ? `4px solid ${theme.palette.primary.light}`
                         : '4px solid transparent',
                     transition: 'all 0.3s ease',
                     '&.Mui-selected': {
                       background: 'rgba(255,255,255,0.3)',
                     },
                     '&.Mui-selected:hover': {
-                      background: 'rgba(255,255,255,0.4)',
+                      background: theme.palette.primary.light,
                     },
                     '&:hover': {
-                      background: 'rgba(255,255,255,0.2)',
+                      background: theme.palette.primary.light,
                     },
                   }}
                 >
