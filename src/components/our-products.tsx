@@ -136,17 +136,7 @@ const ReadyMadeProducts = () => {
       sx={{
         position: 'relative',
         overflow: 'hidden',
-        '&::before': {
-          content: '""',
-          position: 'absolute',
-          top: -100,
-          right: -100,
-          width: 400,
-          height: 400,
-          borderRadius: '50%',
-          background:
-            'radial-gradient(circle, rgba(166,108,255,0.08) 0%, rgba(166,108,255,0) 70%)',
-        },
+        backgroundColor: '#ffffff',
       }}
     >
       {/* Title */}
