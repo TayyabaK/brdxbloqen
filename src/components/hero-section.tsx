@@ -178,7 +178,7 @@ const Hero: React.FC = () => {
                     }}>
                     <TypeAnimation
                       sequence={[
-                        'STRATEGY',
+                        'BUSINESS STRATEGY',
                         1500,
                         'SMART CONTRACTS',
                         1500,
