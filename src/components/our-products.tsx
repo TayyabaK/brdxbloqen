@@ -95,7 +95,7 @@ const products = [
     ],
   },
   {
-    name: 'ICO Offering',
+    name: 'ICO Solution',
     logo: '/images/brd-logo.png',
     images: [
       '/images/brd-ico-1.png',
