@@ -6,7 +6,6 @@ import {
   Typography,
   Card,
   useMediaQuery,
-  useTheme,
   Stack,
 } from '@mui/material';
 import { motion } from 'framer-motion';
