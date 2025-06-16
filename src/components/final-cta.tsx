@@ -13,7 +13,7 @@ const CTAContainer = styled(Box)(({ theme }) => ({
   textAlign: 'center',
   width: '100%',
   margin: '0 auto',
-  mt: 8,
+  marginTop: theme.spacing(8),
 }));
 
 const FinalCTA: React.FC = () => {
@@ -22,9 +22,34 @@ const FinalCTA: React.FC = () => {
   return (
     <CTAContainer>
       <Typography
+        variant='h5'
+        fontWeight={700}
+        gutterBottom
+        sx={{
+          fontSize: {
+            xs: '1.25rem',
+            sm: '1.5rem',
+            md: '1.75rem',
+            lg: '2rem',
+            xl: '2.25rem',
+          },
+        }}>
+        Ready to launch or scale your Web3 project?
+      </Typography>
+
+      <Typography
         variant='subtitle1'
-        sx={{ color: theme.palette.text.primary, mb: 3 }}>
-        Ready to launch or scale your Web3 project? <br />
+        sx={{
+          color: theme.palette.text.primary,
+          mb: 4,
+          fontSize: {
+            xs: '0.9rem',
+            sm: '1rem',
+            md: '1.15rem',
+            lg: '1.25rem',
+            xl: '1.35rem',
+          },
+        }}>
         Let’s build together.
       </Typography>
 
@@ -46,7 +71,13 @@ const FinalCTA: React.FC = () => {
             px: 3,
             py: 1,
             fontWeight: 600,
-            fontSize: { xs: '0.9rem', md: '1rem' },
+            fontSize: {
+              xs: '0.9rem',
+              sm: '1rem',
+              md: '1.1rem',
+              lg: '1.15rem',
+              xl: '1.2rem',
+            },
           }}>
           Book a Free Call
         </Button>
@@ -64,19 +95,29 @@ const FinalCTA: React.FC = () => {
             px: 3,
             py: 1,
             fontWeight: 600,
-            fontSize: { xs: '0.9rem', md: '1rem' },
+            fontSize: {
+              xs: '0.9rem',
+              sm: '1rem',
+              md: '1.1rem',
+              lg: '1.15rem',
+              xl: '1.2rem',
+            },
           }}>
           Send Us a DM
         </Button>
       </Stack>
 
       <Box mt={4}>
-        <Typography
-          variant='body2'
-          sx={{ color: theme.palette.text.secondary }}>
-          WhatsApp: <strong>+52 1 2225244056</strong>
+        <Typography>
+          WhatsApp:{' '}
+          <Box component='span' fontWeight={700}>
+            +52 1 2225244056
+          </Box>
           <br />
-          Email: <strong>ing.danielchavero@gmail.com</strong>
+          Email:{' '}
+          <Box component='span' fontWeight={700}>
+            ing.danielchavero@gmail.com
+          </Box>
         </Typography>
       </Box>
     </CTAContainer>
