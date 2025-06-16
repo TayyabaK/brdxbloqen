@@ -171,7 +171,8 @@ export default function Web3Solutions() {
         py: 12,
         px: { xs: 2, sm: 4, md: 8 },
         background:
-          'radial-gradient(circle at center, #F8FAFC 0%, #F1F5F9 100%)',
+          'radial-gradient(circle at center, #F6FAFF 0%, #EAF2FF 100%)',
+
         position: 'relative',
         overflow: 'hidden',
       }}>

@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import { useRef } from 'react';
 import StatsCarousel from '@/components/at-a-glance';
 import Web3Solutions from '@/components/web3-solutions';
+import SixStepProcess from '@/components/six-step-process';
 
 export default function Home() {
   const testimonialRef = useRef(null);
@@ -20,6 +21,11 @@ export default function Home() {
       <Box sx={{ my: 4 }} />
 
       <Web3Solutions />
+      <Box sx={{ my: 4 }} />
+
+      <SixStepProcess />
+
+      <Box sx={{ my: 4 }} />
 
       <motion.div
         ref={testimonialRef}
