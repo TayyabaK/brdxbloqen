@@ -8,7 +8,6 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  useTheme,
   Paper,
   useMediaQuery,
 } from '@mui/material';
@@ -208,19 +207,16 @@ const ReadyMadeProducts = () => {
                   sx={{
                     py: 2.5,
                     px: 3,
+                    backgroundColor: selected === index 
+                      ? `${theme.palette.primary.light} !important` 
+                      : 'transparent',
                     borderLeft:
                       selected === index
                         ? `4px solid ${theme.palette.primary.light}`
                         : '4px solid transparent',
                     transition: 'all 0.3s ease',
-                    '&.Mui-selected': {
-                      background: 'rgba(255,255,255,0.3)',
-                    },
-                    '&.Mui-selected:hover': {
-                      background: theme.palette.primary.light,
-                    },
                     '&:hover': {
-                      background: theme.palette.primary.light,
+                      backgroundColor: `#ffd8ea !important`,
                     },
                   }}
                 >
@@ -238,6 +234,9 @@ const ReadyMadeProducts = () => {
                     primaryTypographyProps={{
                       fontWeight: 600,
                       fontSize: '1rem',
+                      color: selected === index 
+                        ? theme.palette.getContrastText(theme.palette.primary.light) 
+                        : 'inherit',
                     }}
                   />
                 </ListItemButton>
@@ -334,3 +333,5 @@ const ReadyMadeProducts = () => {
 };
 
 export default ReadyMadeProducts;
+
+
