@@ -148,13 +148,15 @@ const ReadyMadeProducts = () => {
           background:
             'radial-gradient(circle, rgba(166,108,255,0.08) 0%, rgba(166,108,255,0) 70%)',
         },
-      }}>
+      }}
+    >
       {/* Title */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        viewport={{ once: true }}>
+        viewport={{ once: true }}
+      >
         <Typography
           variant='h3'
           sx={{
@@ -163,7 +165,8 @@ const ReadyMadeProducts = () => {
             mb: 2,
             textAlign: 'center',
             fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
-          }}>
+          }}
+        >
           Our Ready Made Products
         </Typography>
       </motion.div>
@@ -176,41 +179,51 @@ const ReadyMadeProducts = () => {
           gap: { xs: 3, md: 6 },
           maxWidth: 1400,
           mx: 'auto',
-        }}>
+        }}
+      >
         {/* Product List */}
         <Paper
-          elevation={3}
+          elevation={4}
           sx={{
-            width: isMobile ? '100%' : 350,
-            borderRadius: 4,
+            width: isMobile ? '100%' : 360,
+            borderRadius: 6,
             overflow: 'hidden',
             flexShrink: 0,
-            background: 'rgba(255, 255, 255, 0.75)',
-            backdropFilter: 'blur(10px)',
-          }}>
+            background: `linear-gradient(135deg, rgba(255,255,255,0.8), rgba(245,245,255,0.6))`,
+            backdropFilter: 'blur(18px)',
+            border: '1px solid rgba(255, 255, 255, 0.2)',
+            boxShadow: '0 12px 32px rgba(0,0,0,0.1)',
+          }}
+        >
           <List sx={{ p: 0 }}>
             {products.map((product, index) => (
               <motion.div
                 key={product.name}
                 whileHover={{ scale: 1.02 }}
-                transition={{ type: 'spring', stiffness: 300 }}>
+                transition={{ type: 'spring', stiffness: 300 }}
+              >
                 <ListItemButton
                   selected={selected === index}
                   onClick={() => handleProductSelect(index)}
                   sx={{
                     py: 2.5,
+                    px: 3,
                     borderLeft:
                       selected === index
                         ? `4px solid ${theme.palette.primary.main}`
-                        : 'none',
+                        : '4px solid transparent',
                     transition: 'all 0.3s ease',
                     '&.Mui-selected': {
-                      background: 'rgba(0, 0, 0, 0.04)',
+                      background: 'rgba(255,255,255,0.3)',
                     },
                     '&.Mui-selected:hover': {
-                      background: 'rgba(0, 0, 0, 0.06)',
+                      background: 'rgba(255,255,255,0.4)',
                     },
-                  }}>
+                    '&:hover': {
+                      background: 'rgba(255,255,255,0.2)',
+                    },
+                  }}
+                >
                   <ListItemIcon sx={{ minWidth: 40 }}>
                     <Image
                       src={product.logo}
@@ -249,22 +262,29 @@ const ReadyMadeProducts = () => {
                 left: 0,
                 right: 0,
                 bottom: 0,
-              }}>
+              }}
+            >
               <Paper
-                elevation={3}
+                elevation={4}
                 sx={{
                   height: '100%',
-                  borderRadius: 4,
+                  borderRadius: 6,
                   overflow: 'hidden',
                   position: 'relative',
-                  background: 'rgba(255, 255, 255, 0.85)',
-                  backdropFilter: 'blur(8px)',
-                }}>
+                  background:
+                    'linear-gradient(145deg, rgba(255,255,255,0.75), rgba(250,250,250,0.5))',
+                  backdropFilter: 'blur(10px)',
+                  boxShadow: '0 12px 32px rgba(0,0,0,0.08)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
                 <Image
                   src={products[selected].images[carouselIndex]}
                   alt={`${products[selected].name} UI`}
                   fill
-                  style={{ objectFit: 'contain', padding: 16 }}
+                  style={{ objectFit: 'contain', padding: 24 }}
                   priority
                 />
               </Paper>
@@ -281,26 +301,28 @@ const ReadyMadeProducts = () => {
               display: 'flex',
               justifyContent: 'center',
               gap: 1,
-            }}>
+            }}
+          >
             {products[selected].images.map((_, idx) => (
-              <Box
+              <motion.div
                 key={idx}
                 onClick={() => {
                   setDirection(idx > carouselIndex ? 1 : -1);
                   setCarouselIndex(idx);
                 }}
-                sx={{
+                whileHover={{ scale: 1.3 }}
+                animate={{
+                  backgroundColor:
+                    idx === carouselIndex
+                      ? theme.palette.primary.main
+                      : theme.palette.grey[400],
+                }}
+                transition={{ duration: 0.2 }}
+                style={{
                   width: 10,
                   height: 10,
                   borderRadius: '50%',
-                  bgcolor:
-                    idx === carouselIndex ? 'primary.main' : 'action.disabled',
                   cursor: 'pointer',
-                  transition: 'all 0.3s ease',
-                  '&:hover': {
-                    bgcolor:
-                      idx === carouselIndex ? 'primary.dark' : 'action.hover',
-                  },
                 }}
               />
             ))}
