@@ -9,7 +9,7 @@ import StatsCarousel from '@/components/at-a-glance';
 import Web3Solutions from '@/components/web3-solutions';
 import SixStepProcess from '@/components/six-step-process';
 import PartnershipSection from '@/components/partnership';
-import FinalCTA from '@/components/final-cta/final-cta';
+import FinalCTA from '@/components/final-cta';
 
 export default function Home() {
   const testimonialRef = useRef(null);
