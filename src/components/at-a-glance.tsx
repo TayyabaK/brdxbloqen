@@ -91,15 +91,47 @@ export default function StatsCarousel() {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        minHeight: '800px',
+        minHeight: { xs: '60vh', md: '70vh', lg: '80vh', xl: '90vh' },
         position: 'relative',
         overflow: 'hidden',
         backgroundColor: '#f2dfb4',
         py: 15,
       }}>
+      {/* "At a Glance" text in center of ellipse */}
+      <Box
+        sx={{
+          position: 'absolute',
+          top: 'calc(50% + 150px)', // Match card vertical center
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          zIndex: 0,
+          textAlign: 'center',
+        }}>
+        <Typography
+          variant='h2'
+          sx={{
+            fontWeight: 'bold',
+            fontSize: {
+              xs: '1rem',
+              sm: '2rem',
+              md: '3rem',
+              lg: '4rem',
+              xl: '5rem',
+            },
+            color: 'black',
+            opacity: 0.15, // Slightly more visible
+            whiteSpace: 'nowrap',
+            textTransform: 'uppercase',
+            letterSpacing: '2px',
+          }}>
+          At a Glance
+        </Typography>
+      </Box>
+
       {stats.map((stat, i) => {
         const { x, y } = currentPositions[i];
         const isTop = i === topIndex;
+        const cardColor = colors[i % colors.length];
 
         // Calculate previous and current relative positions
         const prevRel =
@@ -116,13 +148,13 @@ export default function StatsCarousel() {
             key={i}
             animate={{
               x,
-              y: y + 150, // Shift down by 150px for vertical centering
+              y: y + 150,
               scale: isTop ? 1.3 : 0.9,
               zIndex: isTop ? 2 : 1,
               opacity: isTop ? 1 : 1,
             }}
             transition={{
-              duration: isWrapping ? 0 : 0.8, // Disable animation for wrapping cards
+              duration: isWrapping ? 0 : 0.8,
               ease: [0.16, 1, 0.3, 1],
             }}
             style={{
@@ -136,32 +168,43 @@ export default function StatsCarousel() {
                 borderRadius: 2,
                 display: 'flex',
                 flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'flex-start',
-                boxShadow: theme.shadows[6],
                 overflow: 'hidden',
                 textAlign: 'center',
+                boxShadow: theme.shadows[6],
               }}>
+              {/* Image container with white background */}
               <Box
-                component='img'
-                src={stat.image}
-                alt='icon'
                 sx={{
                   width: '100%',
-                  height: '70%', // Allocate 65% to the image
-                  objectFit: 'contain',
-                  borderBottom: '1px solid #eee',
-                }}
-              />
+                  height: '70%',
+                  backgroundColor: 'white',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                <Box
+                  component='img'
+                  src={stat.image}
+                  alt='icon'
+                  sx={{
+                    maxWidth: '90%',
+                    maxHeight: '90%',
+                    objectFit: 'contain',
+                  }}
+                />
+              </Box>
+
+              {/* Text container - full width with card color */}
               <Box
                 sx={{
-                  backgroundColor: colors[i % colors.length],
-                  height: '30%', // Remaining 35% for text
+                  width: '100%',
+                  height: '30%',
                   px: 1.5,
                   py: 1,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
+                  backgroundColor: cardColor,
                 }}>
                 <Typography
                   variant='caption'
