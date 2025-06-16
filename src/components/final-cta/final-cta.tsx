@@ -22,19 +22,6 @@ const FinalCTA: React.FC = () => {
   return (
     <CTAContainer>
       <Typography
-        variant='h5'
-        fontWeight={800}
-        gutterBottom
-        sx={{
-          background: `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
-          WebkitBackgroundClip: 'text',
-          color: 'transparent',
-          fontSize: { xs: '1.25rem', md: '2rem' },
-        }}>
-        Final CTA
-      </Typography>
-
-      <Typography
         variant='subtitle1'
         sx={{ color: theme.palette.text.primary, mb: 3 }}>
         Ready to launch or scale your Web3 project? <br />
@@ -79,7 +66,7 @@ const FinalCTA: React.FC = () => {
             fontWeight: 600,
             fontSize: { xs: '0.9rem', md: '1rem' },
           }}>
-          Or Send Us a DM
+          Send Us a DM
         </Button>
       </Stack>
 

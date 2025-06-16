@@ -157,7 +157,7 @@ export default function StatsCarousel() {
           minHeight: '60vh',
           position: 'relative',
           overflow: 'hidden',
-          backgroundColor: '#f2dfb4',
+          backgroundColor: '#f7f2e7',
           py: 4,
           px: 2,
         }}>
