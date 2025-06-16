@@ -75,8 +75,8 @@ const StatCard: React.FC<StatCardProps> = ({
 }) => (
   <Box
     sx={{
-      width: isMobile ? 160 : 200,
-      height: isMobile ? 160 : 200,
+      width: isMobile ? 300 : 250,
+      height: isMobile ? 300 : 250,
       borderRadius: 2,
       display: 'flex',
       flexDirection: 'column',
@@ -119,7 +119,7 @@ const StatCard: React.FC<StatCardProps> = ({
         variant='caption'
         sx={{
           color: 'white',
-          fontSize: isMobile ? '0.65rem' : '0.75rem',
+          fontSize: isMobile ? '0.9rem' : '1rem',
           lineHeight: 1.4,
           fontWeight: isTop ? 'bold' : 'normal',
         }}>
@@ -187,6 +187,8 @@ export default function StatsCarousel() {
               width: '100%',
               display: 'flex',
               justifyContent: 'center',
+              minHeight: 300,
+              minWidth: 300,
             }}>
             <StatCard
               stat={stats[centerIndex]}
@@ -217,12 +219,11 @@ export default function StatsCarousel() {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        minHeight: '80vh',
+        minHeight: '100vh',
         position: 'relative',
         overflow: 'hidden',
         backgroundColor: '#f2dfb4',
         py: 15,
-        my: 4,
       }}>
       <Box
         sx={{
