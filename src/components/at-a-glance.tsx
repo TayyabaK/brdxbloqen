@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Box, Typography, useTheme } from '@mui/material';
-import { motion } from 'framer-motion';
+import { Box, Typography, useTheme, useMediaQuery } from '@mui/material';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const stats = [
   {
@@ -36,7 +36,7 @@ const colors = [
 
 const generateHorizontalEllipsePositions = (
   radiusX = 650,
-  radiusY = 400,
+  radiusY = 350,
   total = stats.length
 ) => {
   const positions = [];
@@ -55,10 +55,85 @@ const generateHorizontalEllipsePositions = (
 
 const ellipsePositions = generateHorizontalEllipsePositions();
 
+type Stat = {
+  text: string;
+  image: string;
+};
+
+type StatCardProps = {
+  stat: Stat;
+  cardColor: string;
+  isTop: boolean;
+  isMobile?: boolean;
+};
+
+const StatCard: React.FC<StatCardProps> = ({
+  stat,
+  cardColor,
+  isTop,
+  isMobile = false,
+}) => (
+  <Box
+    sx={{
+      width: isMobile ? 160 : 200,
+      height: isMobile ? 160 : 200,
+      borderRadius: 2,
+      display: 'flex',
+      flexDirection: 'column',
+      overflow: 'hidden',
+      textAlign: 'center',
+      boxShadow: 6,
+    }}>
+    <Box
+      sx={{
+        width: '100%',
+        height: '70%',
+        backgroundColor: 'white',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
+      <Box
+        component='img'
+        src={stat.image}
+        alt='icon'
+        sx={{
+          maxWidth: '90%',
+          maxHeight: '90%',
+          objectFit: 'contain',
+        }}
+      />
+    </Box>
+    <Box
+      sx={{
+        width: '100%',
+        height: '30%',
+        px: 1.5,
+        py: 1,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: cardColor,
+      }}>
+      <Typography
+        variant='caption'
+        sx={{
+          color: 'white',
+          fontSize: isMobile ? '0.65rem' : '0.75rem',
+          lineHeight: 1.4,
+          fontWeight: isTop ? 'bold' : 'normal',
+        }}>
+        {stat.text}
+      </Typography>
+    </Box>
+  </Box>
+);
+
 export default function StatsCarousel() {
   const [centerIndex, setCenterIndex] = useState(0);
   const theme = useTheme();
   const prevCenterIndexRef = useRef(centerIndex);
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -67,23 +142,74 @@ export default function StatsCarousel() {
     return () => clearInterval(interval);
   }, []);
 
-  // Build an array of current on-screen positions
+  useEffect(() => {
+    prevCenterIndexRef.current = centerIndex;
+  }, [centerIndex]);
+
+  if (isSmallScreen) {
+    return (
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          minHeight: '60vh',
+          position: 'relative',
+          overflow: 'hidden',
+          backgroundColor: '#f2dfb4',
+          py: 4,
+          px: 2,
+        }}>
+        <Typography
+          variant='h2'
+          sx={{
+            fontWeight: 'bold',
+            fontSize: '2rem',
+            color: 'black',
+            opacity: 0.15,
+            whiteSpace: 'nowrap',
+            textTransform: 'uppercase',
+            letterSpacing: '2px',
+            mb: 4,
+          }}>
+          At a Glance
+        </Typography>
+
+        <AnimatePresence mode='wait'>
+          <motion.div
+            key={centerIndex}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5 }}
+            style={{
+              width: '100%',
+              display: 'flex',
+              justifyContent: 'center',
+            }}>
+            <StatCard
+              stat={stats[centerIndex]}
+              cardColor={colors[centerIndex % colors.length]}
+              isTop={true}
+              isMobile={true}
+            />
+          </motion.div>
+        </AnimatePresence>
+      </Box>
+    );
+  }
+
   const currentPositions = stats.map((_, i) => {
     const rel = (i - centerIndex + stats.length) % stats.length;
     return ellipsePositions[rel];
   });
 
-  // Find which index has the smallest y (i.e. is visually at the top)
   const topIndex = currentPositions.reduce(
     (bestIdx, pos, idx) =>
       pos.y < currentPositions[bestIdx].y ? idx : bestIdx,
     0
   );
-
-  // Store current centerIndex for transition comparison
-  useEffect(() => {
-    prevCenterIndexRef.current = centerIndex;
-  }, [centerIndex]);
 
   return (
     <Box
@@ -91,17 +217,17 @@ export default function StatsCarousel() {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        minHeight: { xs: '60vh', md: '70vh', lg: '80vh', xl: '90vh' },
+        minHeight: '80vh',
         position: 'relative',
         overflow: 'hidden',
         backgroundColor: '#f2dfb4',
         py: 15,
+        my: 4,
       }}>
-      {/* "At a Glance" text in center of ellipse */}
       <Box
         sx={{
           position: 'absolute',
-          top: 'calc(50% + 150px)', // Match card vertical center
+          top: 'calc(50% + 150px)',
           left: '50%',
           transform: 'translate(-50%, -50%)',
           zIndex: 0,
@@ -119,7 +245,7 @@ export default function StatsCarousel() {
               xl: '5rem',
             },
             color: 'black',
-            opacity: 0.15, // Slightly more visible
+            opacity: 0.15,
             whiteSpace: 'nowrap',
             textTransform: 'uppercase',
             letterSpacing: '2px',
@@ -132,13 +258,9 @@ export default function StatsCarousel() {
         const { x, y } = currentPositions[i];
         const isTop = i === topIndex;
         const cardColor = colors[i % colors.length];
-
-        // Calculate previous and current relative positions
         const prevRel =
           (i - prevCenterIndexRef.current + stats.length) % stats.length;
         const currentRel = (i - centerIndex + stats.length) % stats.length;
-
-        // Check if this card is wrapping from left to right
         const isWrapping =
           (prevRel === 0 && currentRel === stats.length - 1) ||
           (prevRel === stats.length - 1 && currentRel === 0);
@@ -151,7 +273,7 @@ export default function StatsCarousel() {
               y: y + 150,
               scale: isTop ? 1.3 : 0.9,
               zIndex: isTop ? 2 : 1,
-              opacity: isTop ? 1 : 1,
+              opacity: 1,
             }}
             transition={{
               duration: isWrapping ? 0 : 0.8,
@@ -161,63 +283,7 @@ export default function StatsCarousel() {
               position: 'absolute',
               transform: 'translate(-50%, -50%)',
             }}>
-            <Box
-              sx={{
-                width: 200,
-                height: 200,
-                borderRadius: 2,
-                display: 'flex',
-                flexDirection: 'column',
-                overflow: 'hidden',
-                textAlign: 'center',
-                boxShadow: theme.shadows[6],
-              }}>
-              {/* Image container with white background */}
-              <Box
-                sx={{
-                  width: '100%',
-                  height: '70%',
-                  backgroundColor: 'white',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}>
-                <Box
-                  component='img'
-                  src={stat.image}
-                  alt='icon'
-                  sx={{
-                    maxWidth: '90%',
-                    maxHeight: '90%',
-                    objectFit: 'contain',
-                  }}
-                />
-              </Box>
-
-              {/* Text container - full width with card color */}
-              <Box
-                sx={{
-                  width: '100%',
-                  height: '30%',
-                  px: 1.5,
-                  py: 1,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  backgroundColor: cardColor,
-                }}>
-                <Typography
-                  variant='caption'
-                  sx={{
-                    color: 'white',
-                    fontSize: '0.75rem',
-                    lineHeight: 1.4,
-                    fontWeight: isTop ? 'bold' : 'normal',
-                  }}>
-                  {stat.text}
-                </Typography>
-              </Box>
-            </Box>
+            <StatCard stat={stat} cardColor={cardColor} isTop={isTop} />
           </motion.div>
         );
       })}
