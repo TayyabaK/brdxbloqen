@@ -10,6 +10,7 @@ import Web3Solutions from '@/components/web3-solutions';
 import SixStepProcess from '@/components/six-step-process';
 import PartnershipSection from '@/components/partnership';
 import FinalCTA from '@/components/final-cta';
+import ReadyMadeProducts from '@/components/our-products';
 
 export default function Home() {
   const testimonialRef = useRef(null);
@@ -25,6 +26,8 @@ export default function Home() {
       <PartnershipSection />
       <Box sx={{ my: 4 }} />
       <SixStepProcess />
+      <Box sx={{ my: 4 }} />
+      <ReadyMadeProducts />
       <Box sx={{ my: 4 }} />
       <motion.div
         ref={testimonialRef}
