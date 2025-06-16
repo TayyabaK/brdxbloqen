@@ -6,6 +6,7 @@ import { Box } from '@mui/material';
 import { motion } from 'framer-motion';
 import { useRef } from 'react';
 import StatsCarousel from '@/components/at-a-glance';
+import Web3Solutions from '@/components/web3-solutions';
 
 export default function Home() {
   const testimonialRef = useRef(null);
@@ -17,6 +18,8 @@ export default function Home() {
 
       <StatsCarousel />
       <Box sx={{ my: 4 }} />
+
+      <Web3Solutions />
 
       <motion.div
         ref={testimonialRef}
