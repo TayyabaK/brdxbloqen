@@ -51,7 +51,7 @@ const Navbar = () => {
             #ff9900 10%, 
             #d0de21 20%, 
             #4fdc4a 30%, 
-            #3fdad8 40%, 
+            #3cdcda 40%, 
             #2fc9e2 50%, 
             #1c7fee 60%, 
             #5f15f2 70%, 
