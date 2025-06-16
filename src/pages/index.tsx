@@ -28,7 +28,6 @@ export default function Home() {
       <SixStepProcess />
       <Box sx={{ my: 4 }} />
       <ReadyMadeProducts />
-      <Box sx={{ my: 4 }} />
       <motion.div
         ref={testimonialRef}
         initial={{ opacity: 0, y: 50 }}
