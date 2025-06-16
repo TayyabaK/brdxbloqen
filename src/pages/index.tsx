@@ -1,16 +1,26 @@
+'use client';
+
 import * as React from 'react';
-import Hero from '@/components/hero-section';
-import Layout from '@/components/layout';
-import Testimonials from '@/components/testimonials';
 import { Box } from '@mui/material';
 import { motion } from 'framer-motion';
 import { useRef } from 'react';
-import StatsCarousel from '@/components/at-a-glance';
+
+import Layout from '@/components/layout';
+import Hero from '@/components/hero-section';
 import Web3Solutions from '@/components/web3-solutions';
-import SixStepProcess from '@/components/six-step-process';
+import StatsCarousel from '@/components/at-a-glance';
 import PartnershipSection from '@/components/partnership';
-import FinalCTA from '@/components/final-cta';
+import SixStepProcess from '@/components/six-step-process';
 import ReadyMadeProducts from '@/components/our-products';
+import Testimonials from '@/components/testimonials';
+import FinalCTA from '@/components/final-cta';
+
+const sectionAnimation = {
+  initial: { opacity: 0, y: 40 },
+  whileInView: { opacity: 1, y: 0 },
+  transition: { duration: 0.6, ease: 'easeOut' },
+  viewport: { once: true, amount: 0.2 },
+};
 
 export default function Home() {
   const testimonialRef = useRef(null);
@@ -18,29 +28,48 @@ export default function Home() {
   return (
     <Layout>
       <Hero />
-      <Box sx={{ my: 4 }} />
-      <Web3Solutions />
-      <Box sx={{ my: 4 }} />
-      <StatsCarousel />
-      <Box sx={{ my: 4 }} />
-      <PartnershipSection />
-      <Box sx={{ my: 4 }} />
-      <SixStepProcess />
-      <Box sx={{ my: 4 }} />
-      <ReadyMadeProducts />
-      <Box sx={{ my: 4 }} />
+      <Box sx={{ my: 6 }} />
+
+      <motion.div {...sectionAnimation}>
+        <Web3Solutions />
+      </motion.div>
+      <Box sx={{ my: 6 }} />
+
+      <motion.div {...sectionAnimation}>
+        <StatsCarousel />
+      </motion.div>
+      <Box sx={{ my: 6 }} />
+
+      <motion.div {...sectionAnimation}>
+        <PartnershipSection />
+      </motion.div>
+      <Box sx={{ my: 6 }} />
+
+      <motion.div {...sectionAnimation}>
+        <SixStepProcess />
+      </motion.div>
+      <Box sx={{ my: 6 }} />
+
+      <motion.div {...sectionAnimation}>
+        <ReadyMadeProducts />
+      </motion.div>
+      <Box sx={{ my: 6 }} />
 
       <motion.div
         ref={testimonialRef}
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, margin: '0px 0px -100px 0px' }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}>
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+      >
         <Testimonials />
       </motion.div>
-      <Box sx={{ my: 4 }} />
-      <FinalCTA />
-      <Box sx={{ my: 4 }} />
+      <Box sx={{ my: 6 }} />
+
+      <motion.div {...sectionAnimation}>
+        <FinalCTA />
+      </motion.div>
+      <Box sx={{ my: 6 }} />
     </Layout>
   );
 }
