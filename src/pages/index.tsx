@@ -18,9 +18,13 @@ import FinalCTA from '@/components/final-cta';
 const sectionAnimation = {
   initial: { opacity: 0, y: 40 },
   whileInView: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }, // standard ease-out cubic bezier
-  viewport: { once: false, amount: 0.2 },
+  transition: {
+    duration: 0.6,
+    ease: [0.25, 0.1, 0.25, 1], // cubic-bezier easeOut
+  },
+  viewport: { once: true, amount: 0.2 },
 };
+
 
 export default function Home() {
   const testimonialRef = useRef(null);
