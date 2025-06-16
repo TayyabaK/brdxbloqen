@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Box } from '@mui/material';
-import { motion } from 'framer-motion';
+import { motion, cubicBezier } from 'framer-motion';
 import { useRef } from 'react';
 
 import Layout from '@/components/layout';
@@ -20,7 +20,7 @@ const sectionAnimation = {
   whileInView: { opacity: 1, y: 0 },
   transition: {
     duration: 0.6,
-    ease: "easeOut" // Changed from cubic-bezier array to string
+    ease: cubicBezier(0.25, 0.1, 0.25, 1) // Correct cubic-bezier format
   },
   viewport: { once: true, amount: 0.2 },
 };
@@ -63,7 +63,7 @@ export default function Home() {
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, margin: '0px 0px -100px 0px' }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
+        transition={{ duration: 0.6, ease: cubicBezier(0.25, 0.1, 0.25, 1) }}
       >
         <Testimonials />
       </motion.div>
