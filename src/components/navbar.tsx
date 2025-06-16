@@ -31,7 +31,7 @@ const Navbar = () => {
           bottom: 0,
           left: 0,
           right: 0,
-          height: 10,
+          height: 4,
           background: `linear-gradient(
             to right, 
             #ffb3ba 0%,    
