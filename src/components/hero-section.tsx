@@ -11,7 +11,7 @@ const TextPanel = styled(Box)(({ theme }) => ({
   backdropFilter: 'blur(16px)',
   backgroundColor: alpha(theme.palette.background.paper, 0.85),
   borderRadius: Number(theme.shape.borderRadius) * 3,
-  padding: theme.spacing(3), // Reduced padding
+  padding: theme.spacing(1), // Reduced padding
   boxShadow: `0 12px 48px ${alpha(theme.palette.common.black, 0.15)}`,
   border: `1px solid ${alpha(theme.palette.primary.main, 0.25)}`,
   overflow: 'hidden',

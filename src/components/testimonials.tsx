@@ -5,16 +5,50 @@ import {
   Card,
   CardContent,
   Typography,
-  Avatar,
   IconButton,
   useMediaQuery,
 } from '@mui/material';
 import { motion, useAnimation } from 'framer-motion';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import Image from 'next/image';
+
+const fallbackSvg = (logo: string) => {
+  if (logo.length === 0) {
+    return 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 100 100"><rect width="100" height="100" rx="20" ry="20" fill="#bae1ff"/><text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-size="38" fill="#444" font-family="Arial, sans-serif">T</text></svg>';
+  }
+  return logo;
+};
 
 // Testimonial data (unchanged)
 const testimonials = [
+  {
+    name: 'Sertunc, CEO',
+    title: 'Irosh Ecosystem, Turkey',
+    avatar: '/avatars/placeholder6.jpg',
+    quote:
+      '“Huge thanks for your incredible work and dedication! Your talent and passion make a real difference, and we’re so lucky to have you on the team. You’re building something amazing, and we deeply appreciate you every step of the way!”',
+    color: '#f9f0d9',
+    companyLogo: '/images/irosh.jpg',
+  },
+  {
+    name: 'Fedner Francois, CEO',
+    title: 'Oh My God Token, United States',
+    avatar: '/avatars/placeholder1.jpg',
+    quote:
+      '“Great work, understands the project, and delivers well, very knowledgeable. ”',
+    color: '#d9f9e9',
+    companyLogo: '/images/omg.jpg',
+  },
+  {
+    name: 'Manasher, CEO',
+    title: 'MettaProtocol, USA',
+    avatar: '/avatars/placeholder1.jpg',
+    quote:
+      '“BRD delivers IMPRESSIVE work with top-notch professionalism. Their proactive communication, excellent cooperation, and politeness make working with them a truly satisfying experience. Highly recommended! ”',
+    color: '#d9f9e9',
+    companyLogo: '/images/mettaprotocol.jpg',
+  },
   {
     name: 'Melinda Maher',
     title: 'Poland',
@@ -22,7 +56,7 @@ const testimonials = [
     quote:
       '“I AM VERY SATISFIED! THANK YOU SO MUCH! The English was excellent and easily understood for all functions. LEGIT SELLER! I will be back for my ERC20 & Bridge Contract! Thanks, team BRD!”',
     color: '#ffd8ea',
-    companyLogo: '/logos/twiddy.png',
+    companyLogo: '',
   },
   {
     name: 'Alice Brown',
@@ -31,16 +65,16 @@ const testimonials = [
     quote:
       '“Being new to the crypto world I was not sure where to start. Team BRD was there to help me create my token and made the process seem so easy. I am now ready for the next steps and I have team BRD on my radar for these next steps.”',
     color: '#e7d9fd',
-    companyLogo: '/logos/company2.png',
+    companyLogo: '',
   },
   {
-    name: 'Emily Davis',
-    title: 'UAE',
+    name: 'Bryan Jones, CEO',
+    title: 'Succeed Token, United States',
     avatar: '/avatars/placeholder3.jpg',
     quote:
-      '“I AM VERY SATISFIED! THANK YOU SO MUCH! The English was excellent and easily understood for all functions. LEGIT SELLER! I will be back for my ERC20 & Bridge Contract! Thanks, team BRD!”',
+      '“Thank you team BRD for bringing the Succeed Token vision to life. Together, we’re building a future where innovation meets opportunity.”',
     color: '#ffbda7',
-    companyLogo: '/logos/company3.png',
+    companyLogo: '/images/succeed-token.jpg',
   },
   {
     name: 'David Martinez',
@@ -49,7 +83,7 @@ const testimonials = [
     quote:
       '“Team BRD does an excellent job in a timely manner! Great communication and they securely help you deploy your contract from your own computer. I look forward to working with them further!!”',
     color: '#eaffb2',
-    companyLogo: '/logos/company4.png',
+    companyLogo: '',
   },
   {
     name: 'Jane Smith',
@@ -58,7 +92,7 @@ const testimonials = [
     quote:
       "“Working with team BRD was a real pleasure! They're super fast, explaining patiently everything one needs to know and guiding us perfectly through this journey. Already working on our next step together and looking forward to a long-term partnership with team BRD! Thanks, guys!”",
     color: '#d9e9fd',
-    companyLogo: '/logos/company5.png',
+    companyLogo: '',
   },
   {
     name: 'Michael Johnson',
@@ -67,7 +101,7 @@ const testimonials = [
     quote:
       '“A true professional. The team answered all my questions and addressed all my concerns very patiently. I highly recommend them.”',
     color: '#f9f0d9',
-    companyLogo: '/logos/company6.png',
+    companyLogo: '',
   },
 ];
 
@@ -197,10 +231,10 @@ export default function Testimonials() {
   const quoteFontSize = isSm
     ? '1rem'
     : isMd
-    ? '1.25rem'
-    : isLg
-    ? '1.5rem'
-    : '2rem';
+      ? '1.25rem'
+      : isLg
+        ? '1.5rem'
+        : '2rem';
   const nameFontSize = isSm ? '0.875rem' : isMd ? '1rem' : '1.125rem';
   const titleFontSize = isSm ? '0.525rem' : isMd ? '0.875rem' : '1rem';
 
@@ -287,13 +321,12 @@ export default function Testimonials() {
                           justifyContent: 'center',
                           mt: 1,
                         }}>
-                        <Avatar
-                          src={t.avatar}
-                          sx={{
-                            width: isSm ? 48 : 64,
-                            height: isSm ? 48 : 64,
-                            mr: 2,
-                          }}
+                        <Image
+                          src={fallbackSvg(t.companyLogo)}
+                          alt={t.name}
+                          width={isSm ? 48 : 64}
+                          height={isSm ? 48 : 64}
+                          style={{ borderRadius: '50%', marginRight: 8 }}
                         />
                         <Box>
                           <Typography

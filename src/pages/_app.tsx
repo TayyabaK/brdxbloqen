@@ -5,6 +5,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import type { AppProps } from 'next/app';
 import { theme } from '@/theme/theme';
+import { ModalProvider } from '@/contexts/modal-context';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -15,8 +16,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Component {...pageProps} />
+        <ModalProvider>
+          <CssBaseline />
+          <Component {...pageProps} />
+        </ModalProvider>
       </ThemeProvider>
     </>
   );
