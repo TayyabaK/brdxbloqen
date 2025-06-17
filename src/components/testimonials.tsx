@@ -56,7 +56,7 @@ const testimonials = [
     quote:
       '“I AM VERY SATISFIED! THANK YOU SO MUCH! The English was excellent and easily understood for all functions. LEGIT SELLER! I will be back for my ERC20 & Bridge Contract! Thanks, team BRD!”',
     color: '#ffd8ea',
-    companyLogo: '',
+    companyLogo: '/images/avatar.png',
   },
   {
     name: 'Alice Brown',
@@ -65,7 +65,7 @@ const testimonials = [
     quote:
       '“Being new to the crypto world I was not sure where to start. Team BRD was there to help me create my token and made the process seem so easy. I am now ready for the next steps and I have team BRD on my radar for these next steps.”',
     color: '#e7d9fd',
-    companyLogo: '',
+    companyLogo: '/images/avatar.png',
   },
   {
     name: 'Bryan Jones, CEO',
@@ -83,7 +83,7 @@ const testimonials = [
     quote:
       '“Team BRD does an excellent job in a timely manner! Great communication and they securely help you deploy your contract from your own computer. I look forward to working with them further!!”',
     color: '#eaffb2',
-    companyLogo: '',
+    companyLogo: '/images/avatar.png',
   },
   {
     name: 'Jane Smith',
@@ -92,7 +92,7 @@ const testimonials = [
     quote:
       "“Working with team BRD was a real pleasure! They're super fast, explaining patiently everything one needs to know and guiding us perfectly through this journey. Already working on our next step together and looking forward to a long-term partnership with team BRD! Thanks, guys!”",
     color: '#d9e9fd',
-    companyLogo: '',
+    companyLogo: '/images/avatar.png',
   },
   {
     name: 'Michael Johnson',
@@ -100,8 +100,8 @@ const testimonials = [
     avatar: '/avatars/placeholder6.jpg',
     quote:
       '“A true professional. The team answered all my questions and addressed all my concerns very patiently. I highly recommend them.”',
-    color: '#f9f0d9',
-    companyLogo: '',
+    color: '#ffbda7',
+    companyLogo: '/images/avatar.png',
   },
 ];
 
