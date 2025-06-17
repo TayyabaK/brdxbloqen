@@ -37,7 +37,7 @@ const testimonials = [
     avatar: '/avatars/placeholder1.jpg',
     quote:
       '“Great work, understands the project, and delivers well, very knowledgeable. ”',
-    color: '#d9f9e9',
+    color: '#e7d9fd',
     companyLogo: '/images/omg.jpg',
   },
   {
