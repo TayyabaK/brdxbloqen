@@ -11,7 +11,7 @@ const TextPanel = styled(Box)(({ theme }) => ({
   backdropFilter: 'blur(16px)',
   backgroundColor: alpha(theme.palette.background.paper, 0.85),
   borderRadius: Number(theme.shape.borderRadius) * 3,
-  padding: theme.spacing(1), // Reduced padding
+  padding: theme.spacing(3), // Reduced padding
   boxShadow: `0 12px 48px ${alpha(theme.palette.common.black, 0.15)}`,
   border: `1px solid ${alpha(theme.palette.primary.main, 0.25)}`,
   overflow: 'hidden',
@@ -90,62 +90,139 @@ const Hero: React.FC = () => {
               width: '100%',
               height: { xs: 'auto', md: '100%' },
             }}>
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: 'easeOut' }}
-              style={{ height: '100%' }}>
-              <TextPanel>
-                <Box sx={{ mb: 3 }}>
-                  {' '}
-                  {/* Reduced margin */}
-                  <Chip
-                    label='BRDIGITECH × BLOQEN'
-                    color='primary'
-                    sx={{
-                      borderRadius: 8,
-                      height: 32, // Reduced height
-                      fontWeight: 700,
-                      bgcolor: '#f9c163',
-                      color: 'black',
-                      px: 2,
-                      fontSize: '0.75rem', // Smaller font
-                    }}
-                  />
-                </Box>
-
-                <Typography
-                  variant='h1'
+            <TextPanel>
+              <Box sx={{ mb: 3 }}>
+                {' '}
+                {/* Reduced margin */}
+                <Chip
+                  label='BRDIGITECH × BLOQEN'
+                  color='primary'
                   sx={{
-                    fontSize: {
-                      xs: '1.75rem', // Smaller on mobile
-                      sm: '2.25rem',
-                      md: '3rem',
-                      lg: '3.5rem',
-                    },
-                    lineHeight: 1.15,
-                    fontWeight: 800,
-                    mb: 3, // Reduced margin
+                    borderRadius: 8,
+                    height: 32, // Reduced height
+                    fontWeight: 700,
+                    bgcolor: '#f9c163',
+                    color: 'black',
+                    px: 2,
+                    fontSize: '0.75rem', // Smaller font
+                  }}
+                />
+              </Box>
+
+              <Typography
+                variant='h1'
+                sx={{
+                  fontSize: {
+                    xs: '1.75rem', // Smaller on mobile
+                    sm: '2.25rem',
+                    md: '3rem',
+                    lg: '3.5rem',
+                  },
+                  lineHeight: 1.15,
+                  fontWeight: 800,
+                  mb: 3, // Reduced margin
+                }}>
+                Launch your{' '}
+                <Box
+                  component='span'
+                  sx={{
+                    background: `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+                    WebkitBackgroundClip: 'text',
+                    backgroundClip: 'text',
+                    color: 'transparent',
                   }}>
-                  Launch your{' '}
-                  <Box
-                    component='span'
-                    sx={{
+                  Web3 vision
+                </Box>{' '}
+                with confidence
+              </Typography>
+
+              <Typography
+                variant='subtitle1'
+                sx={{
+                  mb: 3, // Reduced margin
+                  lineHeight: 1.6,
+                  fontSize: {
+                    xs: '0.875rem',
+                    sm: '0.9rem',
+                    md: '1.25rem',
+                    lg: '1.5rem',
+                    xl: '1.75rem',
+                  }, // Smaller font
+                  color: theme.palette.text.secondary,
+                }}>
+                Full-stack Web3 solutions by BRDigitech + Bloqen —{' '}
+                <Box component='span' sx={{ fontWeight: 600 }}>
+                  we specialize in
+                </Box>
+                <br />
+                <Box
+                  component='span'
+                  sx={{
+                    fontWeight: 700,
+                    background: `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+                    WebkitBackgroundClip: 'text',
+                    backgroundClip: 'text',
+                    color: 'transparent',
+                    // responsive fontSize:
+                    fontSize: {
+                      xs: '0.9rem',
+                      sm: '1.1rem',
+                      md: '1.3rem',
+                      lg: '1.5rem',
+                    },
+                  }}>
+                  <TypeAnimation
+                    sequence={[
+                      'BUSINESS STRATEGY',
+                      1500,
+                      'SMART CONTRACTS',
+                      1500,
+                      'AUTOMATION BOTS',
+                      1500,
+                      'TOKEN PRESALES',
+                      1500,
+                      'NFT LAUNCHPAD AND MARKETPLACE',
+                      2500,
+                      'WEB3 DAPPS',
+                      1500,
+                    ]}
+                    wrapper='span'
+                    cursor={true}
+                    repeat={Infinity}
+                    style={{
                       background: `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
                       WebkitBackgroundClip: 'text',
                       backgroundClip: 'text',
                       color: 'transparent',
-                    }}>
-                    Web3 vision
-                  </Box>{' '}
-                  with confidence
-                </Typography>
+                      fontWeight: 700,
+                    }}
+                  />
+                </Box>
+              </Typography>
 
-                <Typography
-                  variant='subtitle1'
+              <Box sx={{ display: 'flex', gap: 2 }}>
+                {' '}
+                {/* Reduced gap */}
+                <Button
+                  component={motion.a}
+                  whileHover={{
+                    scale: 1.03,
+                    boxShadow: `0 8px 24px ${alpha(
+                      theme.palette.primary.main,
+                      0.3
+                    )}`,
+                  }}
+                  whileTap={{ scale: 0.97 }}
+                  href='#book-call'
+                  variant='contained'
+                  color='primary'
+                  size='medium' // Smaller button
                   sx={{
-                    mb: 3, // Reduced margin
-                    lineHeight: 1.6,
+                    borderRadius: Number(theme.shape.borderRadius) * 2,
+                    px: 4, // Reduced padding
+                    py: 1, // Reduced padding
+                    fontWeight: 700,
+                    textTransform: 'none',
                     fontSize: {
                       xs: '0.875rem',
                       sm: '0.9rem',
@@ -153,94 +230,11 @@ const Hero: React.FC = () => {
                       lg: '1.5rem',
                       xl: '1.75rem',
                     }, // Smaller font
-                    color: theme.palette.text.secondary,
                   }}>
-                  Full-stack Web3 solutions by BRDigitech + Bloqen —{' '}
-                  <Box component='span' sx={{ fontWeight: 600 }}>
-                    we specialize in
-                  </Box>
-                  <br />
-                  <Box
-                    component='span'
-                    sx={{
-                      fontWeight: 700,
-                      background: `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
-                      WebkitBackgroundClip: 'text',
-                      backgroundClip: 'text',
-                      color: 'transparent',
-                      // responsive fontSize:
-                      fontSize: {
-                        xs: '0.9rem',
-                        sm: '1.1rem',
-                        md: '1.3rem',
-                        lg: '1.5rem',
-                      },
-                    }}>
-                    <TypeAnimation
-                      sequence={[
-                        'BUSINESS STRATEGY',
-                        1500,
-                        'SMART CONTRACTS',
-                        1500,
-                        'AUTOMATION BOTS',
-                        1500,
-                        'TOKEN PRESALES',
-                        1500,
-                        'NFT LAUNCHPAD AND MARKETPLACE',
-                        2500,
-                        'WEB3 DAPPS',
-                        1500,
-                      ]}
-                      wrapper='span'
-                      cursor={true}
-                      repeat={Infinity}
-                      style={{
-                        background: `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
-                        WebkitBackgroundClip: 'text',
-                        backgroundClip: 'text',
-                        color: 'transparent',
-                        fontWeight: 700,
-                      }}
-                    />
-                  </Box>
-                </Typography>
-
-                <Box sx={{ display: 'flex', gap: 2 }}>
-                  {' '}
-                  {/* Reduced gap */}
-                  <Button
-                    component={motion.a}
-                    whileHover={{
-                      scale: 1.03,
-                      boxShadow: `0 8px 24px ${alpha(
-                        theme.palette.primary.main,
-                        0.3
-                      )}`,
-                    }}
-                    whileTap={{ scale: 0.97 }}
-                    href='#book-call'
-                    variant='contained'
-                    color='primary'
-                    size='medium' // Smaller button
-                    sx={{
-                      borderRadius: Number(theme.shape.borderRadius) * 2,
-                      px: 4, // Reduced padding
-                      py: 1, // Reduced padding
-                      fontWeight: 700,
-                      textTransform: 'none',
-                      fontSize: {
-                        xs: '0.875rem',
-                        sm: '0.9rem',
-                        md: '1.25rem',
-                        lg: '1.5rem',
-                        xl: '1.75rem',
-                      }, // Smaller font
-                    }}>
-                    Schedule Free Consultation
-                  </Button>
-                </Box>
-              </TextPanel>
-            </motion.div>
+                  Schedule Free Consultation
+                </Button>
+              </Box>
+            </TextPanel>
           </Box>
 
           {/* Right: Image Container */}
