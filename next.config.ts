@@ -2,9 +2,11 @@
 const nextConfig = {
   reactStrictMode: true,
   experimental: {
-    appDir: false, // ← disable App Router
+    serverActions: {
+      enabled: true,
+    },
   },
   pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
 };
 
-module.exports = nextConfig;
+export default nextConfig;

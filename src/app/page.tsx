@@ -20,7 +20,7 @@ const sectionAnimation = {
   whileInView: { opacity: 1, y: 0 },
   transition: {
     duration: 0.6,
-    ease: cubicBezier(0.25, 0.1, 0.25, 1) // Correct cubic-bezier format
+    ease: cubicBezier(0.25, 0.1, 0.25, 1), // Correct cubic-bezier format
   },
   viewport: { once: true, amount: 0.2 },
 };
@@ -63,8 +63,7 @@ export default function Home() {
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, margin: '0px 0px -100px 0px' }}
-        transition={{ duration: 0.6, ease: cubicBezier(0.25, 0.1, 0.25, 1) }}
-      >
+        transition={{ duration: 0.6, ease: cubicBezier(0.25, 0.1, 0.25, 1) }}>
         <Testimonials />
       </motion.div>
       <Box sx={{ my: 6 }} />

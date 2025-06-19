@@ -4,7 +4,7 @@ import { Box, Typography, Button, Stack, useTheme, alpha } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { motion } from 'framer-motion';
 import { useModal } from '@/contexts/modal-context';
-import ContactModal from './modals/modal-contact-us';
+import ContactModalWrapper from './modals/contact-modal-wrapper';
 
 const CTAContainer = styled(Box)(({ theme }) => ({
   backdropFilter: 'blur(16px)',
@@ -22,29 +22,8 @@ const FinalCTA: React.FC = () => {
   const theme = useTheme();
   const { openModal } = useModal();
 
-  const onSubmit = (form: { name: string; email: string; message: string }) => {
-    fetch('/api/contact', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(form),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          console.log('Email sent successfully:', data);
-        } else {
-          console.error('Failed to send email:', data.error);
-        }
-      })
-      .catch((error) => {
-        console.error('Error sending email:', error);
-      });
-  };
-
   const handleContactUs = () => {
-    openModal(<ContactModal onSubmit={onSubmit} />);
+    openModal(<ContactModalWrapper />);
   };
 
   return (
