@@ -4,6 +4,8 @@ import { Box, Typography, Button, Container, Chip } from '@mui/material';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
+import ContactModalWrapper from './modals/contact-modal-wrapper';
+import { useModal } from '@/contexts/modal-context';
 
 // Glass panel with reduced padding
 const TextPanel = styled(Box)(({ theme }) => ({
@@ -54,6 +56,11 @@ const ImageContainer = styled(Box)(({ theme }) => ({
 
 const Hero: React.FC = () => {
   const theme = useTheme();
+  const { openModal } = useModal();
+
+  const handleContactUs = () => {
+    openModal(<ContactModalWrapper />);
+  };
 
   return (
     <Box
@@ -230,7 +237,8 @@ const Hero: React.FC = () => {
                       lg: '1.5rem',
                       xl: '1.75rem',
                     }, // Smaller font
-                  }}>
+                  }}
+                  onClick={handleContactUs}>
                   Schedule Free Consultation
                 </Button>
               </Box>

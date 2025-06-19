@@ -91,7 +91,6 @@ const FinalCTA: React.FC = () => {
         </Button>
         <Button
           component={motion.a}
-          href='https://twitter.com/messages/compose?recipient_id=YOUR_ID'
           target='_blank'
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
@@ -110,7 +109,8 @@ const FinalCTA: React.FC = () => {
               lg: '1.15rem',
               xl: '1.2rem',
             },
-          }}>
+          }}
+          onClick={handleContactUs}>
           Send Us a DM
         </Button>
       </Stack>
