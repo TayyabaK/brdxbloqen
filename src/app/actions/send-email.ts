@@ -152,7 +152,7 @@ export async function sendEmail(_: unknown, formData: FormData) {
       }
     );
 
-    return { success: true, id: response.id };
+    return { success: true, id: response.data?.id };
   } catch {
     return { success: false, error: 'Email failed to send' };
   }
