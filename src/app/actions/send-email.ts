@@ -138,7 +138,11 @@ export async function sendEmail(_: unknown, formData: FormData) {
   try {
     const response = await resend.emails.send({
       from: 'onboarding@resend.dev',
-      to: 'tayyaba.khalil@gmail.com',
+      to: [
+        'tayyaba.khalil@gmail.com',
+        'nomanhaq@gmail.com',
+        'ing.danielchavero@gmail.com',
+      ],
       subject: 'BRDIGITECH x BLOQEN',
       html,
     });
