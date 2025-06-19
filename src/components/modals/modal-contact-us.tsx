@@ -18,7 +18,14 @@ import { useEffect, useState, useTransition } from 'react';
 export default function ContactForm({
   action,
 }: {
-  action: (formData: FormData) => Promise<{ success: boolean; error?: string }>;
+  action: (
+    prevState: { success: boolean; error?: string; id?: string },
+    formData: FormData
+  ) => Promise<{
+    success: boolean;
+    error?: string;
+    id?: string;
+  }>;
 }) {
   const { closeModal } = useModal();
   const [form, setForm] = useState({ name: '', email: '', message: '' });
