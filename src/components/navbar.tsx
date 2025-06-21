@@ -61,8 +61,8 @@ const Navbar = () => {
           <Image
             src='/images/brdxbloqen.png'
             alt='BRD x Bloqen Logo'
-            width={200}
-            height={80}
+            width={300}
+            height={100}
             priority
           />
         </Box>

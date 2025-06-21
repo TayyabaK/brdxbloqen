@@ -36,7 +36,7 @@ const solutions = [
   },
   {
     title: 'Tokenomics & Smart Contract Audits',
-    description: 'Clear token structures + security testing',
+    description: 'Battle-tested smart contracts, audit-ready.',
     icon: <SecurityIcon fontSize='large' />,
     bg: 'linear-gradient(135deg, #C6E8FF 0%, #7AC3FF 100%)',
     accent: '#0085E6',
@@ -51,8 +51,7 @@ const solutions = [
   },
   {
     title: 'NFT Marketplace',
-    description:
-      'Custom trading platforms with support for ERC721/1155, royalties, and auctions',
+    description: 'Launch your own OpenSea-style marketplace in days.',
     icon: <StorefrontIcon fontSize='large' />,
     bg: 'linear-gradient(135deg, #D1F2EB 0%, #88D8C0 100%)',
     accent: '#00A896',
