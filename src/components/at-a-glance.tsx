@@ -221,7 +221,7 @@ export default function StatsCarousel() {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        minHeight: '100vh',
+        minHeight: { sm: '100vh', md: '100vh', lg: '130vh', xl: '100vh' },
         position: 'relative',
         overflow: 'hidden',
         backgroundColor: '#f9f0d9',
