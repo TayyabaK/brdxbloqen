@@ -1,15 +1,9 @@
 'use client';
 
 import React from 'react';
-import {
-  Box,
-  Typography,
-  Card,
-  useMediaQuery,
-  Stack,
-} from '@mui/material';
+import { Box, Typography, Card, useMediaQuery, Stack } from '@mui/material';
 import { motion } from 'framer-motion';
-import {theme} from '@/theme/theme'
+import { theme } from '@/theme/theme';
 
 const partners = [
   {
@@ -17,14 +11,14 @@ const partners = [
     description:
       'Bahrain-based dev agency, 8+ years experience, 51+ team size, 50+ successful Web3 apps.',
     icon: '/images/brd-logo.png',
-    color: theme.palette.primary.main
+    color: theme.palette.primary.main,
   },
   {
     name: 'Bloqen',
     description:
       'Founder-facing strategy, onboarding, and long-term vision — aligning Web3 products with business goals and growth potential.',
     icon: '/images/bloqen.png',
-    color: 'black'
+    color: 'black',
   },
 ];
 
@@ -125,7 +119,6 @@ const PartnershipSection = () => {
               height: 'auto',
               maxWidth: '100%',
               objectFit: 'contain',
-              borderRadius: 2,
               filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.1))',
             }}
           />
