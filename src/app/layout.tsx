@@ -1,3 +1,5 @@
+// app/layout.tsx
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { ReactNode } from 'react';
 import ThemeClientProviders from './theem-client-provider';
 
@@ -13,7 +15,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <link rel='icon' href='/favicon.ico' />
       </head>
       <body>
-        <ThemeClientProviders>{children}</ThemeClientProviders>
+        <AppRouterCacheProvider>
+          <ThemeClientProviders>{children}</ThemeClientProviders>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );
