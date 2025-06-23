@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { styled, alpha, useTheme } from '@mui/material/styles';
 import { Box, Typography, Button, Container, Chip } from '@mui/material';
@@ -7,22 +9,20 @@ import { TypeAnimation } from 'react-type-animation';
 import ContactModalWrapper from './modals/contact-modal-wrapper';
 import { useModal } from '@/contexts/modal-context';
 
-// Glass panel with reduced padding
 const TextPanel = styled(Box)(({ theme }) => ({
   position: 'relative',
   backdropFilter: 'blur(16px)',
   backgroundColor: alpha(theme.palette.background.paper, 0.85),
   borderRadius: Number(theme.shape.borderRadius) * 3,
-  padding: theme.spacing(3), // Reduced padding
+  padding: theme.spacing(4),
   boxShadow: `0 12px 48px ${alpha(theme.palette.common.black, 0.15)}`,
   border: `1px solid ${alpha(theme.palette.primary.main, 0.25)}`,
   overflow: 'hidden',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
-  height: '100%',
   [theme.breakpoints.down('sm')]: {
-    padding: theme.spacing(2), // Reduced mobile padding
+    padding: theme.spacing(2),
     borderRadius: 8,
   },
   '&:before': {
@@ -36,7 +36,6 @@ const TextPanel = styled(Box)(({ theme }) => ({
   },
 }));
 
-// Image container with fixed mobile height
 const ImageContainer = styled(Box)(({ theme }) => ({
   position: 'relative',
   borderRadius: Number(theme.shape.borderRadius) * 3,
@@ -45,12 +44,13 @@ const ImageContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  height: '100%',
+  height: '400px', // ✅ Set fixed height or minHeight
+  width: '100%', // ✅ Ensure width exists for fill
   boxShadow: `0 12px 48px ${alpha(theme.palette.common.black, 0.1)}`,
   border: `1px solid ${alpha(theme.palette.grey[300], 0.3)}`,
   [theme.breakpoints.down('sm')]: {
     borderRadius: Number(theme.shape.borderRadius) * 2,
-    height: 300, // Fixed height on mobile
+    height: 300,
   },
 }));
 
@@ -66,68 +66,48 @@ const Hero: React.FC = () => {
     <Box
       component='section'
       sx={{
-        position: 'relative',
-        background: `${theme.palette.primary.light}`,
-        py: { xs: 4, md: 0 },
-        minHeight: { xs: 'auto', md: '100vh' },
-        display: 'flex',
-        alignItems: 'center',
-        overflow: 'hidden',
+        background: theme.palette.primary.light,
+        py: 8, // Increased for more breathing room
+        px: { xs: 2, sm: 4 },
       }}>
-      <Container
-        maxWidth={false}
-        sx={{
-          position: 'relative',
-          zIndex: 2,
-          height: '100%',
-          py: { xs: 2, md: 4 }, // Added container padding
-        }}>
+      <Container maxWidth='xl'>
         <Box
           sx={{
             display: 'flex',
             flexDirection: { xs: 'column', md: 'row' },
-            gap: { xs: 2, md: 4 }, // Reduced gap
+            gap: { xs: 4, md: 6 },
             alignItems: 'center',
-            height: { xs: 'auto', md: '80vh' },
           }}>
-          {/* Left: Text Panel */}
-          <Box
-            sx={{
-              flex: 1,
-              width: '100%',
-              height: { xs: 'auto', md: '100%' },
-            }}>
+          {/* Left Panel */}
+          <Box sx={{ flex: 1 }}>
             <TextPanel>
-              <Box sx={{ mb: 3 }}>
-                {' '}
-                {/* Reduced margin */}
-                <Chip
-                  label='BRDIGITECH × BLOQEN'
-                  color='primary'
-                  sx={{
-                    borderRadius: 8,
-                    height: 32, // Reduced height
-                    fontWeight: 700,
-                    bgcolor: '#f9c163',
-                    color: 'black',
-                    px: 2,
-                    fontSize: '0.75rem', // Smaller font
-                  }}
-                />
-              </Box>
+              <Chip
+                label='BRDIGITECH × BLOQEN'
+                sx={{
+                  alignSelf: 'flex-start',
+                  mb: 3,
+                  borderRadius: 8,
+                  height: 32,
+                  fontWeight: 700,
+                  bgcolor: '#f9c163',
+                  color: 'black',
+                  px: 2,
+                  fontSize: '0.75rem',
+                }}
+              />
 
               <Typography
                 variant='h1'
                 sx={{
                   fontSize: {
-                    xs: '1.75rem', // Smaller on mobile
+                    xs: '1.75rem',
                     sm: '2.25rem',
                     md: '3rem',
                     lg: '3.5rem',
                   },
                   lineHeight: 1.15,
                   fontWeight: 800,
-                  mb: 3, // Reduced margin
+                  mb: 3,
                 }}>
                 Launch your{' '}
                 <Box
@@ -135,7 +115,6 @@ const Hero: React.FC = () => {
                   sx={{
                     background: `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
                     WebkitBackgroundClip: 'text',
-                    backgroundClip: 'text',
                     color: 'transparent',
                   }}>
                   Web3 vision
@@ -146,15 +125,13 @@ const Hero: React.FC = () => {
               <Typography
                 variant='subtitle1'
                 sx={{
-                  mb: 3, // Reduced margin
+                  mb: 3,
                   lineHeight: 1.6,
                   fontSize: {
                     xs: '0.875rem',
-                    sm: '0.9rem',
+                    sm: '1rem',
                     md: '1.25rem',
-                    lg: '1.5rem',
-                    xl: '1.75rem',
-                  }, // Smaller font
+                  },
                   color: theme.palette.text.secondary,
                 }}>
                 Full-stack Web3 solutions by BRDigitech + Bloqen —{' '}
@@ -168,14 +145,11 @@ const Hero: React.FC = () => {
                     fontWeight: 700,
                     background: `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
                     WebkitBackgroundClip: 'text',
-                    backgroundClip: 'text',
                     color: 'transparent',
-                    // responsive fontSize:
                     fontSize: {
                       xs: '0.9rem',
                       sm: '1.1rem',
                       md: '1.3rem',
-                      lg: '1.5rem',
                     },
                   }}>
                   <TypeAnimation
@@ -194,13 +168,9 @@ const Hero: React.FC = () => {
                       1500,
                     ]}
                     wrapper='span'
-                    cursor={true}
+                    cursor
                     repeat={Infinity}
                     style={{
-                      background: `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
-                      WebkitBackgroundClip: 'text',
-                      backgroundClip: 'text',
-                      color: 'transparent',
                       fontWeight: 700,
                     }}
                   />
@@ -208,8 +178,6 @@ const Hero: React.FC = () => {
               </Typography>
 
               <Box sx={{ display: 'flex', gap: 2 }}>
-                {' '}
-                {/* Reduced gap */}
                 <Button
                   component={motion.a}
                   whileHover={{
@@ -223,20 +191,18 @@ const Hero: React.FC = () => {
                   href='#book-call'
                   variant='contained'
                   color='primary'
-                  size='medium' // Smaller button
+                  size='medium'
                   sx={{
                     borderRadius: Number(theme.shape.borderRadius) * 2,
-                    px: 4, // Reduced padding
-                    py: 1, // Reduced padding
+                    px: 4,
+                    py: 1.5,
                     fontWeight: 700,
                     textTransform: 'none',
                     fontSize: {
                       xs: '0.875rem',
-                      sm: '0.9rem',
-                      md: '1.25rem',
-                      lg: '1.5rem',
-                      xl: '1.75rem',
-                    }, // Smaller font
+                      sm: '1rem',
+                      md: '1.125rem',
+                    },
                   }}
                   onClick={handleContactUs}>
                   Schedule Free Consultation
@@ -245,25 +211,16 @@ const Hero: React.FC = () => {
             </TextPanel>
           </Box>
 
-          {/* Right: Image Container */}
-          <Box
-            sx={{
-              flex: 1,
-              width: '100%',
-              height: { xs: 300, md: '100%' }, // Fixed height on mobile
-              position: 'relative',
-            }}>
+          {/* Right Panel */}
+          <Box sx={{ flex: 1 }}>
             <ImageContainer>
               <Image
                 src='/images/brd-bloqen-hero-image.gif'
                 alt='Web3 Development'
                 fill
-                style={{
-                  objectFit: 'cover',
-                  objectPosition: 'center',
-                }}
+                style={{ objectFit: 'cover', objectPosition: 'center' }}
                 priority
-                unoptimized // Ensures GIF animation works
+                unoptimized
               />
             </ImageContainer>
           </Box>

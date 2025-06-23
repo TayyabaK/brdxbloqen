@@ -1,19 +1,19 @@
 // app/layout.tsx
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
-import { ReactNode } from 'react';
 import ThemeClientProviders from './theem-client-provider';
 
 export const metadata = {
-  title: 'BRD + Bloqen',
-  description: 'BRDigitech Partnering with Bloqen',
+  title: 'Your App Title',
+  description: 'Your description',
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang='en'>
-      <head>
-        <link rel='icon' href='/favicon.ico' />
-      </head>
       <body>
         <AppRouterCacheProvider>
           <ThemeClientProviders>{children}</ThemeClientProviders>

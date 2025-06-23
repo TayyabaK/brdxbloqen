@@ -164,9 +164,9 @@ const ArrowButton = styled(IconButton)(({ theme }) => ({
 // Component
 export default function Testimonials() {
   const theme = useTheme();
-  const isSm = useMediaQuery(theme.breakpoints.down('sm'));
-  const isMd = useMediaQuery(theme.breakpoints.down('md'));
-  const isLg = useMediaQuery(theme.breakpoints.down('lg'));
+  const isSm = useMediaQuery(theme.breakpoints.down('sm'), { noSsr: true });
+  const isMd = useMediaQuery(theme.breakpoints.down('md'), { noSsr: true });
+  const isLg = useMediaQuery(theme.breakpoints.down('lg'), { noSsr: true });
   const [index, setIndex] = useState(0);
   const controlsFront = useAnimation();
   const controlsNext = useAnimation();

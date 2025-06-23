@@ -13,7 +13,7 @@ import {
 } from '@mui/material';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import {theme} from '@/theme/theme'
+import { theme } from '@/theme/theme';
 
 const products = [
   {
@@ -110,7 +110,7 @@ const products = [
 ];
 
 const ReadyMadeProducts = () => {
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'), { noSsr: true });
   const [selected, setSelected] = useState(0);
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [direction, setDirection] = useState(1);
@@ -137,15 +137,13 @@ const ReadyMadeProducts = () => {
         position: 'relative',
         overflow: 'hidden',
         backgroundColor: '#ffffff',
-      }}
-    >
+      }}>
       {/* Title */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-      >
+        viewport={{ once: true }}>
         <Typography
           variant='h3'
           sx={{
@@ -154,8 +152,7 @@ const ReadyMadeProducts = () => {
             mb: 2,
             textAlign: 'center',
             fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
-          }}
-        >
+          }}>
           Our Ready Made Products
         </Typography>
       </motion.div>
@@ -168,8 +165,7 @@ const ReadyMadeProducts = () => {
           gap: { xs: 3, md: 6 },
           maxWidth: 1400,
           mx: 'auto',
-        }}
-      >
+        }}>
         {/* Product List */}
         <Paper
           elevation={4}
@@ -182,24 +178,23 @@ const ReadyMadeProducts = () => {
             backdropFilter: 'blur(18px)',
             border: '1px solid rgba(255, 255, 255, 0.2)',
             boxShadow: '0 12px 32px rgba(0,0,0,0.1)',
-          }}
-        >
+          }}>
           <List sx={{ p: 0 }}>
             {products.map((product, index) => (
               <motion.div
                 key={product.name}
                 whileHover={{ scale: 1.02 }}
-                transition={{ type: 'spring', stiffness: 300 }}
-              >
+                transition={{ type: 'spring', stiffness: 300 }}>
                 <ListItemButton
                   selected={selected === index}
                   onClick={() => handleProductSelect(index)}
                   sx={{
                     py: 2.5,
                     px: 3,
-                    backgroundColor: selected === index 
-                      ? `${theme.palette.primary.light} !important` 
-                      : 'transparent',
+                    backgroundColor:
+                      selected === index
+                        ? `${theme.palette.primary.light} !important`
+                        : 'transparent',
                     borderLeft:
                       selected === index
                         ? `4px solid ${theme.palette.primary.light}`
@@ -208,8 +203,7 @@ const ReadyMadeProducts = () => {
                     '&:hover': {
                       backgroundColor: `#ffd8ea !important`,
                     },
-                  }}
-                >
+                  }}>
                   <ListItemIcon sx={{ minWidth: 40 }}>
                     <Image
                       src={product.logo}
@@ -224,9 +218,12 @@ const ReadyMadeProducts = () => {
                     primaryTypographyProps={{
                       fontWeight: 600,
                       fontSize: '1rem',
-                      color: selected === index 
-                        ? theme.palette.getContrastText(theme.palette.primary.light) 
-                        : 'inherit',
+                      color:
+                        selected === index
+                          ? theme.palette.getContrastText(
+                              theme.palette.primary.light
+                            )
+                          : 'inherit',
                     }}
                   />
                 </ListItemButton>
@@ -251,8 +248,7 @@ const ReadyMadeProducts = () => {
                 left: 0,
                 right: 0,
                 bottom: 0,
-              }}
-            >
+              }}>
               <Paper
                 elevation={4}
                 sx={{
@@ -267,8 +263,7 @@ const ReadyMadeProducts = () => {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                }}
-              >
+                }}>
                 <Image
                   src={products[selected].images[carouselIndex]}
                   alt={`${products[selected].name} UI`}
@@ -290,8 +285,7 @@ const ReadyMadeProducts = () => {
               display: 'flex',
               justifyContent: 'center',
               gap: 1,
-            }}
-          >
+            }}>
             {products[selected].images.map((_, idx) => (
               <motion.div
                 key={idx}
@@ -323,5 +317,3 @@ const ReadyMadeProducts = () => {
 };
 
 export default ReadyMadeProducts;
-
-

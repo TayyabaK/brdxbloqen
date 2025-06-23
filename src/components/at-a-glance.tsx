@@ -133,7 +133,9 @@ export default function StatsCarousel() {
   const [centerIndex, setCenterIndex] = useState(0);
   const theme = useTheme();
   const prevCenterIndexRef = useRef(centerIndex);
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'), {
+    noSsr: true,
+  });
 
   useEffect(() => {
     const interval = setInterval(() => {

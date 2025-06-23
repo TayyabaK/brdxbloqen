@@ -23,7 +23,7 @@ const partners = [
 ];
 
 const PartnershipSection = () => {
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'), { noSsr: true });
 
   return (
     <Box

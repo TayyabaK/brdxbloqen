@@ -2,17 +2,9 @@
 'use client';
 
 import { ReactNode } from 'react';
-import { ModalProvider } from '@/contexts/modal-context';
-import { ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider, CssBaseline } from '@mui/material';
 import { theme } from '@/theme/theme';
-import CssBaseline from '@mui/material/CssBaseline';
-import createCache from '@emotion/cache';
-import { CacheProvider } from '@emotion/react';
-
-const clientSideEmotionCache = createCache({
-  key: 'css',
-  prepend: true,
-});
+import { ModalProvider } from '@/contexts/modal-context';
 
 export default function ThemeClientProviders({
   children,
@@ -20,13 +12,9 @@ export default function ThemeClientProviders({
   children: ReactNode;
 }) {
   return (
-    <CacheProvider value={clientSideEmotionCache}>
-      <ThemeProvider theme={theme}>
-        <ModalProvider>
-          <CssBaseline />
-          {children}
-        </ModalProvider>
-      </ThemeProvider>
-    </CacheProvider>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <ModalProvider>{children}</ModalProvider>
+    </ThemeProvider>
   );
 }
