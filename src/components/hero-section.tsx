@@ -44,7 +44,7 @@ const ImageContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  height: '400px', // ✅ Set fixed height or minHeight
+  height: '100%', // ✅ Set fixed height or minHeight
   width: '100%', // ✅ Ensure width exists for fill
   boxShadow: `0 12px 48px ${alpha(theme.palette.common.black, 0.1)}`,
   border: `1px solid ${alpha(theme.palette.grey[300], 0.3)}`,
@@ -76,11 +76,12 @@ const Hero: React.FC = () => {
             display: 'flex',
             flexDirection: { xs: 'column', md: 'row' },
             gap: { xs: 4, md: 6 },
-            alignItems: 'center',
+            alignItems: 'stretch', // 🔥 Ensures both columns stretch equally
+            minHeight: { md: 480 }, // Or any fixed minimum height you want
           }}>
           {/* Left Panel */}
           <Box sx={{ flex: 1 }}>
-            <TextPanel>
+            <TextPanel sx={{ width: '100%' }}>
               <Chip
                 label='BRDIGITECH × BLOQEN'
                 sx={{
@@ -213,7 +214,7 @@ const Hero: React.FC = () => {
 
           {/* Right Panel */}
           <Box sx={{ flex: 1 }}>
-            <ImageContainer>
+            <ImageContainer sx={{ width: '100%' }}>
               <Image
                 src='/images/brd-bloqen-hero-image.gif'
                 alt='Web3 Development'

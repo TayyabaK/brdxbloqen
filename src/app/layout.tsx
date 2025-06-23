@@ -3,8 +3,8 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import ThemeClientProviders from './theem-client-provider';
 
 export const metadata = {
-  title: 'Your App Title',
-  description: 'Your description',
+  title: 'BRD x BLOQEN',
+  description: 'Partnership between BRD and BLOQEN',
 };
 
 export default function RootLayout({
