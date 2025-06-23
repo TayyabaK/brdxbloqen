@@ -35,7 +35,7 @@ const colors = [
 ];
 
 const generateHorizontalEllipsePositions = (
-  radiusX = 650,
+  radiusX = 500,
   radiusY = 350,
   total = stats.length
 ) => {
@@ -52,8 +52,6 @@ const generateHorizontalEllipsePositions = (
   }
   return positions;
 };
-
-const ellipsePositions = generateHorizontalEllipsePositions();
 
 type Stat = {
   text: string;
@@ -136,6 +134,38 @@ export default function StatsCarousel() {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'), {
     noSsr: true,
   });
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [ellipsePositions, setEllipsePositions] = useState(() =>
+    generateHorizontalEllipsePositions()
+  );
+
+  // Update ellipse positions based on container width
+  useEffect(() => {
+    const updateEllipseSize = () => {
+      if (!containerRef.current) return;
+
+      // Calculate responsive radius based on container width
+      const containerWidth = containerRef.current.clientWidth;
+      const responsiveRadiusX = Math.min(
+        Math.max(containerWidth * 0.4, 300),
+        650
+      );
+
+      // Generate new positions with responsive width
+      setEllipsePositions(
+        generateHorizontalEllipsePositions(responsiveRadiusX, 350)
+      );
+    };
+
+    // Initial update
+    updateEllipseSize();
+
+    // Update on window resize
+    window.addEventListener('resize', updateEllipseSize);
+
+    // Cleanup
+    return () => window.removeEventListener('resize', updateEllipseSize);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -172,7 +202,7 @@ export default function StatsCarousel() {
             opacity: 0.15,
             whiteSpace: 'nowrap',
             textTransform: 'uppercase',
-            letterSpacing: '2px',
+            letterSping: '2px',
             mb: 4,
           }}>
           At a Glance
@@ -217,6 +247,7 @@ export default function StatsCarousel() {
 
   return (
     <Box
+      ref={containerRef}
       sx={{
         display: 'flex',
         justifyContent: 'center',
