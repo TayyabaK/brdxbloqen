@@ -44,7 +44,7 @@ const solutions = [
   {
     title: 'NFT Collection Launchpad',
     description:
-      'Tools to mint, manage, and deploy NFT collections with metadata and whitelist logic',
+      'Tools to mint, manage, and deploy NFT collections with metadata',
     icon: <CollectionsIcon fontSize='large' />,
     bg: 'linear-gradient(135deg, #FADADD 0%, #F8BBD0 100%)',
     accent: '#E91E63',
