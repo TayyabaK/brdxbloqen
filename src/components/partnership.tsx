@@ -127,7 +127,7 @@ const PartnershipSection = () => {
 
       {/* Partner Cards */}
       <Stack
-        spacing={{ xs: 4, md: 6 }}
+        spacing={{ xs: 4, md: 2 }}
         direction={isMobile ? 'column' : 'row'}
         justifyContent='center'
         alignItems='stretch'

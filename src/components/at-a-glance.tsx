@@ -131,7 +131,7 @@ export default function StatsCarousel() {
   const [centerIndex, setCenterIndex] = useState(0);
   const theme = useTheme();
   const prevCenterIndexRef = useRef(centerIndex);
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'), {
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'), {
     noSsr: true,
   });
   const containerRef = useRef<HTMLDivElement>(null);
@@ -252,7 +252,7 @@ export default function StatsCarousel() {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        minHeight: { sm: '100vh', md: '100vh', lg: '130vh', xl: '100vh' },
+        minHeight: { sm: '100vh', md: '130vh', lg: '130vh', xl: '100vh' },
         position: 'relative',
         overflow: 'hidden',
         backgroundColor: '#f9f0d9',
