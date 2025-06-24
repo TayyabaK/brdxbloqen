@@ -75,7 +75,7 @@ const Hero: React.FC = () => {
           sx={{
             display: 'flex',
             flexDirection: { xs: 'column', md: 'row' },
-            gap: { xs: 4, md: 6 },
+            gap: { xs: 4, md: 1 },
             alignItems: 'stretch', // 🔥 Ensures both columns stretch equally
             minHeight: { md: 480 }, // Or any fixed minimum height you want
           }}>
