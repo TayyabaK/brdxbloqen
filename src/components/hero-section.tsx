@@ -178,41 +178,37 @@ const Hero: React.FC = () => {
                 </Box>
               </Typography>
 
-              <Box
+              <Button
+                component={motion.a}
+                whileHover={{
+                  scale: 1.03,
+                  boxShadow: `0 8px 24px ${alpha(theme.palette.primary.main, 0.3)}`,
+                }}
+                whileTap={{ scale: 0.97 }}
+                href='#book-call'
+                variant='contained'
+                color='primary'
+                size='medium'
                 sx={{
-                  display: 'flex',
-                  gap: 2,
-                  flexDirection: { xs: 'column', sm: 'row' },
-                }}>
-                <Button
-                  component={motion.a}
-                  whileHover={{
-                    scale: 1.03,
-                    boxShadow: `0 8px 24px ${alpha(theme.palette.primary.main, 0.3)}`,
-                  }}
-                  whileTap={{ scale: 0.97 }}
-                  href='#book-call'
-                  variant='contained'
-                  color='primary'
-                  size='medium'
-                  sx={{
-                    borderRadius: Number(theme.shape.borderRadius) * 2,
-                    px: 4,
-                    py: 1.5,
-                    fontWeight: 700,
-                    textTransform: 'none',
-                    fontSize: {
-                      xs: '0.875rem',
-                      sm: '1rem',
-                      md: '1.125rem',
-                    },
-                    width: { xs: '100%', sm: 'auto' }, // ✅ Responsive width fix
-                    whiteSpace: 'normal', // ✅ Allow text wrap
-                  }}
-                  onClick={handleContactUs}>
-                  Schedule Free Consultation
-                </Button>
-              </Box>
+                  borderRadius: Number(theme.shape.borderRadius) * 2,
+                  px: 4,
+                  py: 1.5,
+                  fontWeight: 700,
+                  textTransform: 'none',
+                  fontSize: {
+                    xs: '0.75rem', // ⬅️ smaller on small screens
+                    sm: '0.875rem',
+                    md: '1rem',
+                  },
+                  width: { xs: '100%', sm: 'auto' },
+                  whiteSpace: 'normal',
+                  textAlign: 'center', // ✅ centers text inside
+                  justifyContent: 'center', // ✅ centers text on button level
+                  lineHeight: 1.4,
+                }}
+                onClick={handleContactUs}>
+                Schedule Free Consultation
+              </Button>
             </TextPanel>
           </Box>
 
