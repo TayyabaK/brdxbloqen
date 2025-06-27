@@ -9,13 +9,17 @@ import ContactModalWrapper from './modals/contact-modal-wrapper';
 const CTAContainer = styled(Box)(({ theme }) => ({
   backdropFilter: 'blur(16px)',
   backgroundColor: alpha(theme.palette.background.paper, 0.85),
-  padding: theme.spacing(3),
+  padding: theme.spacing(4),
   boxShadow: `0 12px 48px ${alpha(theme.palette.common.black, 0.15)}`,
   border: `1px solid ${alpha(theme.palette.primary.main, 0.25)}`,
   textAlign: 'center',
   width: '100%',
   margin: '0 auto',
   marginTop: theme.spacing(8),
+  [theme.breakpoints.down('sm')]: {
+    padding: theme.spacing(2),
+    marginTop: theme.spacing(5),
+  },
 }));
 
 const FinalCTA: React.FC = () => {
@@ -40,6 +44,7 @@ const FinalCTA: React.FC = () => {
             lg: '2rem',
             xl: '2.25rem',
           },
+          lineHeight: 1.4,
         }}>
         Ready to launch or scale your Web3 project?
       </Typography>
@@ -61,9 +66,10 @@ const FinalCTA: React.FC = () => {
       </Typography>
 
       <Stack
-        direction='row'
+        direction={{ xs: 'column', sm: 'row' }}
         spacing={2}
         justifyContent='center'
+        alignItems='center'
         flexWrap='wrap'>
         <Button
           component={motion.a}
@@ -82,9 +88,8 @@ const FinalCTA: React.FC = () => {
               xs: '0.9rem',
               sm: '1rem',
               md: '1.1rem',
-              lg: '1.15rem',
-              xl: '1.2rem',
             },
+            width: { xs: '100%', sm: 'auto' },
           }}
           onClick={handleContactUs}>
           Book a Free Call
@@ -106,17 +111,22 @@ const FinalCTA: React.FC = () => {
               xs: '0.9rem',
               sm: '1rem',
               md: '1.1rem',
-              lg: '1.15rem',
-              xl: '1.2rem',
             },
+            width: { xs: '100%', sm: 'auto' },
           }}
           onClick={handleContactUs}>
           Send Us a DM
         </Button>
       </Stack>
 
-      <Box mt={4}>
-        <Typography>
+      <Box mt={4} textAlign={{ xs: 'left', sm: 'center' }}>
+        <Typography
+          sx={{
+            fontSize: {
+              xs: '0.85rem',
+              sm: '1rem',
+            },
+          }}>
           WhatsApp:{' '}
           <Box component='span' fontWeight={700}>
             +52 1 2225244056
