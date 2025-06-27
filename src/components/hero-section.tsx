@@ -178,15 +178,17 @@ const Hero: React.FC = () => {
                 </Box>
               </Typography>
 
-              <Box sx={{ display: 'flex', gap: 2 }}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  gap: 2,
+                  flexDirection: { xs: 'column', sm: 'row' },
+                }}>
                 <Button
                   component={motion.a}
                   whileHover={{
                     scale: 1.03,
-                    boxShadow: `0 8px 24px ${alpha(
-                      theme.palette.primary.main,
-                      0.3
-                    )}`,
+                    boxShadow: `0 8px 24px ${alpha(theme.palette.primary.main, 0.3)}`,
                   }}
                   whileTap={{ scale: 0.97 }}
                   href='#book-call'
@@ -204,6 +206,8 @@ const Hero: React.FC = () => {
                       sm: '1rem',
                       md: '1.125rem',
                     },
+                    width: { xs: '100%', sm: 'auto' }, // ✅ Responsive width fix
+                    whiteSpace: 'normal', // ✅ Allow text wrap
                   }}
                   onClick={handleContactUs}>
                   Schedule Free Consultation
