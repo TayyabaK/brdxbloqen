@@ -12,11 +12,26 @@ import { useModal } from '@/contexts/modal-context';
 const TextPanel = styled(Box)(({ theme }) => ({
   position: 'relative',
   backdropFilter: 'blur(16px)',
-  backgroundColor: alpha(theme.palette.background.paper, 0.85),
+  background: `radial-gradient(
+    circle at 30% 30%,
+    #cfeffc,
+    #b4e0f2,
+    #e8ede9 60%,
+    #d7f2f1 80%,
+    #d1d7e7
+  );`,
   borderRadius: Number(theme.shape.borderRadius) * 3,
+  // new responsive override for right inner corners
+  [theme.breakpoints.up('md')]: {
+    borderTopRightRadius: 0,
+    borderBottomRightRadius: 0,
+  },
+  [theme.breakpoints.down('sm')]: {
+    padding: theme.spacing(2),
+    borderRadius: 8,
+  },
   padding: theme.spacing(4),
   boxShadow: `0 12px 48px ${alpha(theme.palette.common.black, 0.15)}`,
-  border: `1px solid ${alpha(theme.palette.primary.main, 0.25)}`,
   overflow: 'hidden',
   display: 'flex',
   flexDirection: 'column',
@@ -39,6 +54,15 @@ const TextPanel = styled(Box)(({ theme }) => ({
 const ImageContainer = styled(Box)(({ theme }) => ({
   position: 'relative',
   borderRadius: Number(theme.shape.borderRadius) * 3,
+  // new responsive override for left inner corners
+  [theme.breakpoints.up('md')]: {
+    borderTopLeftRadius: 0,
+    borderBottomLeftRadius: 0,
+  },
+  [theme.breakpoints.down('sm')]: {
+    borderRadius: Number(theme.shape.borderRadius) * 2,
+    height: 300,
+  },
   overflow: 'hidden',
   backgroundColor: theme.palette.grey[100],
   display: 'flex',
@@ -47,7 +71,6 @@ const ImageContainer = styled(Box)(({ theme }) => ({
   height: '100%', // ✅ Set fixed height or minHeight
   width: '100%', // ✅ Ensure width exists for fill
   boxShadow: `0 12px 48px ${alpha(theme.palette.common.black, 0.1)}`,
-  border: `1px solid ${alpha(theme.palette.grey[300], 0.3)}`,
   [theme.breakpoints.down('sm')]: {
     borderRadius: Number(theme.shape.borderRadius) * 2,
     height: 300,
@@ -67,7 +90,7 @@ const Hero: React.FC = () => {
       component='section'
       sx={{
         background: theme.palette.primary.light,
-        py: 8, // Increased for more breathing room
+        py: 6,
         px: { xs: 2, sm: 4 },
       }}>
       <Container maxWidth='xl'>
@@ -75,7 +98,7 @@ const Hero: React.FC = () => {
           sx={{
             display: 'flex',
             flexDirection: { xs: 'column', md: 'row' },
-            gap: { xs: 4, md: 1 },
+            gap: { xs: 4, md: 0 },
             alignItems: 'stretch', // 🔥 Ensures both columns stretch equally
             minHeight: { md: 480 }, // Or any fixed minimum height you want
           }}>
@@ -87,7 +110,7 @@ const Hero: React.FC = () => {
                 sx={{
                   alignSelf: 'flex-start',
                   mb: 3,
-                  borderRadius: 8,
+                  borderRadius: 0,
                   height: 32,
                   fontWeight: 700,
                   bgcolor: '#f9c163',
