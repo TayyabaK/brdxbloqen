@@ -148,10 +148,11 @@ const ReadyMadeProducts = () => {
           variant='h3'
           sx={{
             fontWeight: 800,
-            color: '#111827',
+            color: '#191a1d',
             mb: 2,
             textAlign: 'center',
             fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
+            paddingBottom: 4,
           }}>
           Our Ready Made Products
         </Typography>

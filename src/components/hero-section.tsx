@@ -68,12 +68,21 @@ const ImageContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  height: '100%', // ✅ Set fixed height or minHeight
-  width: '100%', // ✅ Ensure width exists for fill
+  height: '100%',
+  width: '100%',
   boxShadow: `0 12px 48px ${alpha(theme.palette.common.black, 0.1)}`,
-  [theme.breakpoints.down('sm')]: {
-    borderRadius: Number(theme.shape.borderRadius) * 2,
-    height: 300,
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 4,
+    background: `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+    display: 'none',
+    [theme.breakpoints.up('md')]: {
+      display: 'block',
+    },
   },
 }));
 
@@ -110,7 +119,7 @@ const Hero: React.FC = () => {
                 sx={{
                   alignSelf: 'flex-start',
                   mb: 3,
-                  borderRadius: 0,
+                  borderRadius: Number(theme.shape.borderRadius) * 2,
                   height: 32,
                   fontWeight: 700,
                   bgcolor: '#f9c163',
@@ -223,7 +232,7 @@ const Hero: React.FC = () => {
                     sm: '0.875rem',
                     md: '1rem',
                   },
-                  width: { xs: '100%', sm: 'auto' },
+                  width: { xs: '100%', sm: 'auto', md: '70%' },
                   whiteSpace: 'normal',
                   textAlign: 'center', // ✅ centers text inside
                   justifyContent: 'center', // ✅ centers text on button level
