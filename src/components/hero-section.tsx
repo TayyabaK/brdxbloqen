@@ -21,7 +21,7 @@ const TextPanel = styled(Box)(({ theme }) => ({
     #d1d7e7
   );`,
   borderRadius: Number(theme.shape.borderRadius) * 3,
-  // new responsive override for right inner corners
+  border: `1px solid ${theme.palette.divider}`, // ✅ uniform border
   [theme.breakpoints.up('md')]: {
     borderTopRightRadius: 0,
     borderBottomRightRadius: 0,
@@ -36,10 +36,6 @@ const TextPanel = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
-  [theme.breakpoints.down('sm')]: {
-    padding: theme.spacing(2),
-    borderRadius: 8,
-  },
   '&:before': {
     content: '""',
     position: 'absolute',
@@ -51,10 +47,11 @@ const TextPanel = styled(Box)(({ theme }) => ({
   },
 }));
 
+
 const ImageContainer = styled(Box)(({ theme }) => ({
   position: 'relative',
   borderRadius: Number(theme.shape.borderRadius) * 3,
-  // new responsive override for left inner corners
+  border: `1px solid ${theme.palette.divider}`, // ✅ uniform border
   [theme.breakpoints.up('md')]: {
     borderTopLeftRadius: 0,
     borderBottomLeftRadius: 0,
@@ -86,6 +83,7 @@ const ImageContainer = styled(Box)(({ theme }) => ({
   },
 }));
 
+
 const Hero: React.FC = () => {
   const theme = useTheme();
   const { openModal } = useModal();
@@ -107,7 +105,7 @@ const Hero: React.FC = () => {
           sx={{
             display: 'flex',
             flexDirection: { xs: 'column', md: 'row' },
-            gap: { xs: 4, md: 0 },
+            gap: { xs: 4, md: 1 },
             alignItems: 'stretch', // 🔥 Ensures both columns stretch equally
             minHeight: { md: 480 }, // Or any fixed minimum height you want
           }}>
